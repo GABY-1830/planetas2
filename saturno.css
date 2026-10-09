@@ -1,0 +1,1609 @@
+/* =========================================================
+   EXPLORA EL UNIVERSO — SATURNO
+   Versión responsive: computadora, tablet y celular
+   Basado en la estructura y posiciones del CSS original.
+   ========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    font-family: Arial, sans-serif;
+    background: #050816;
+    color: white;
+}
+
+.universo {
+    width: 100%;
+    min-height: 100vh;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 20% 30%, rgba(99,102,241,.12), transparent 25%),
+        radial-gradient(circle at 75% 70%, rgba(56,189,248,.08), transparent 25%),
+        #050816;
+}
+
+/* Estrellas decorativas hechas con CSS */
+.universo::before,
+.universo::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+        radial-gradient(circle, rgba(255,255,255,.8) 1px, transparent 1.5px),
+        radial-gradient(circle, rgba(255,255,255,.45) 1px, transparent 1.5px);
+    background-size: 95px 95px, 155px 155px;
+    background-position: 15px 20px, 50px 70px;
+    opacity: .32;
+}
+
+/* ---------- TÍTULO ---------- */
+
+.titulo {
+    position: absolute;
+    top: 1%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(90%, 900px);
+    text-align: center;
+    z-index: 30;
+}
+
+.titulo h1 {
+    font-size: clamp(30px, 4vw, 52px);
+    line-height: 1.1;
+    text-shadow: 0 0 18px rgba(129,140,248,.8);
+}
+
+.titulo p {
+    margin-top: 10px;
+    color: #a5b4fc;
+    font-size: clamp(14px, 1.5vw, 18px);
+}
+
+/* ---------- PLANETA ---------- */
+
+.planeta {
+    width: clamp(220px, 31vw, 400px);
+    height: clamp(220px, 31vw, 400px);
+    position: absolute;
+    top: 50%;
+    left: 27%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    z-index: 10;
+
+   background:
+        radial-gradient(circle at 30% 30%, #fef3c7, #d6a85f 60%, #78350f);
+    position: relative;
+    box-shadow:
+        0 0 40px #795b25,
+        0 0 100px #5e441d,
+        inset -30px -20px 40px #020617;
+
+    transition: transform .5s ease;
+    animation: girar 30s linear infinite;
+}
+
+.anillo {
+    position: absolute;
+    width: 145px;
+    height: 38px;
+    border: 7px solid #d6b77a;
+    border-radius: 50%;
+    top: 31px;
+    left: -23px;
+    transform: rotate(-15deg);
+    box-shadow: 0 0 8px #d6b77a;
+}
+
+
+.planeta:hover {
+    transform: translate(-50%, -50%) scale(1.06);
+}
+
+@keyframes girar {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+    /* =====================================================
+       TAMAÑO DE LAS LUNAS
+       ===================================================== */
+
+    .universo > div[class]:not(.titulo):not(.planeta):not(.tarjeta):not([class$="-container"]) {
+        transform:
+            translate(-50%, -50%)
+            scale(.72);
+    }
+
+
+    /* Al tocar una luna */
+    .universo > div[class]:not(.titulo):not(.planeta):not(.tarjeta):not([class$="-container"]):active {
+        transform:
+            translate(-50%, -50%)
+            scale(1.25);
+
+        z-index: 100;
+
+        box-shadow:
+            0 0 15px white,
+            0 0 25px rgba(255,255,255,.95);
+    }
+
+
+    /* =====================================================
+       TARJETA
+       ===================================================== */
+    @media (max-width: 768px) {
+
+    .tarjeta {
+        position: absolute !important;
+
+        left: 50% !important;
+        right: auto !important;
+
+        /* Mantener el cuadro GRANDE */
+        width: 92% !important;
+        height: 300px !important;
+
+        /* Bajarlo */
+        top: auto !important;
+        bottom: -300px !important;
+
+        transform: translateX(-50%) !important;
+
+        padding: 15px 18px !important;
+
+        border-radius: 17px !important;
+
+        overflow: hidden;
+    }
+
+    }
+    .tarjeta {
+        top: auto;
+        right: auto;
+        bottom: 3%;
+        left: 50%;
+
+        transform: translateX(-50%);
+
+        width: 92%;
+        padding: 15px 18px;
+
+        border-radius: 16px;
+    }
+
+    .tarjeta h3 {
+        margin-bottom: 5px;
+        font-size: 21px;
+    }
+
+    .tarjeta p {
+        font-size: 13px;
+        line-height: 1.4;
+    }
+
+/* =========================================================
+   CELULAR PEQUEÑO
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+    .universo {
+        min-height: 600px;
+    }
+
+    .planeta {
+        width: 50vw;
+        height: 50vw;
+        min-width: 175px;
+        min-height: 175px;
+        top: 39%;
+    }
+
+    .universo > div[class]:not(.titulo):not(.planeta):not(.tarjeta):not([class$="-container"]) {
+        transform: translate(-50%, -50%) scale(.62);
+    }
+
+    .universo > div[class]:not(.titulo):not(.planeta):not(.tarjeta):not([class$="-container"]):hover,
+    .universo > div[class]:not(.titulo):not(.planeta):not(.tarjeta):not([class$="-container"]):active {
+        transform: translate(-50%, -50%) scale(1.25);
+    }
+
+    .tarjeta {
+        bottom: 2%;
+        width: 94%;
+        padding: 12px 15px;
+    }
+
+    .tarjeta h3 {
+        font-size: 19px;
+    }
+
+    .tarjeta p {
+        font-size: 12px;
+        line-height: 1.35;
+    }
+
+    .universo > div[class]:not(.titulo):not(.planeta):not(.tarjeta):not([class$="-container"]) h2 {
+        font-size: 7px;
+        top: 16px;
+    }
+}
+
+
+/* En pantallas táctiles el efecto se activa al tocar */
+@media (hover: none) and (pointer: coarse) {
+    .universo > div[class]:not(.titulo):not(.planeta):not(.tarjeta):not([class$="-container"]):active {
+        box-shadow:
+            0 0 15px white,
+            0 0 32px rgba(255,255,255,.95);
+    }
+}
+
+
+
+
+/* =========================================================
+   SATURNO — DISTRIBUCIÓN FINAL Y RESPONSIVE
+   Este bloque sobrescribe las reglas anteriores.
+   ========================================================= */
+
+html, body {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+.universo {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* ---------- SATURNO ---------- */
+
+.planeta {
+    position: absolute;
+    z-index: 30;
+    overflow: visible;
+}
+
+/* Anillo principal: centrado respecto al planeta */
+.anillo {
+    position: absolute;
+    width: 175%;
+    height: 42%;
+    top: 29%;
+    left: -37.5%;
+    border: 7px solid rgba(214, 183, 122, .95);
+    border-radius: 50%;
+    transform: rotate(-15deg);
+    box-shadow:
+        0 0 8px rgba(214,183,122,.9),
+        0 0 22px rgba(214,183,122,.45);
+    z-index: 40;
+    pointer-events: none;
+}
+
+/* Segundo aro para darle profundidad */
+.anillo::after {
+    content: "";
+    position: absolute;
+    inset: 13% 7%;
+    border: 3px solid rgba(245,225,180,.6);
+    border-radius: 50%;
+}
+
+/* ---------- TODAS LAS LUNAS ---------- */
+
+.universo > div[class]:not(.titulo):not(.planeta):not(.anillo):not(.tarjeta):not([class$="-container"]) {
+    position: absolute;
+    border-radius: 50%;
+    background: #e5e7eb;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 12px rgba(255,255,255,.9);
+    animation: flotar 4s ease-in-out infinite;
+    z-index: 20;
+    transition: transform .25s ease, box-shadow .25s ease, filter .25s ease;
+}
+
+.universo > div[class]:not(.titulo):not(.planeta):not(.anillo):not(.tarjeta):not([class$="-container"]):hover {
+    transform: translate(-50%, -50%) scale(1.7);
+    box-shadow: 0 0 15px white, 0 0 35px rgba(255,255,255,.95);
+    filter: brightness(1.15);
+    z-index: 100;
+    cursor: pointer;
+}
+
+.universo > div[class]:not(.titulo):not(.planeta):not(.anillo):not(.tarjeta):not([class$="-container"]) h2 {
+    position: absolute;
+    top: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: max-content;
+    max-width: 130px;
+    text-align: center;
+    color: white;
+    font-size: 8px;
+    line-height: 1.1;
+    font-weight: bold;
+    text-shadow: 0 1px 5px #000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .2s ease;
+}
+
+.universo > div[class]:not(.titulo):not(.planeta):not(.anillo):not(.tarjeta):not([class$="-container"]):hover h2 {
+    opacity: 1;
+}
+
+/* ---------- CUADRO DE INFORMACIÓN ---------- */
+
+.tarjeta {
+    position: absolute !important;
+    color: white;
+    background: rgba(15,23,42,.88);
+    border: 1px solid rgba(129,140,248,.75);
+    border-radius: 20px;
+    box-shadow:
+        0 0 30px rgba(99,102,241,.3),
+        inset 0 0 25px rgba(255,255,255,.025);
+    backdrop-filter: blur(10px);
+    z-index: 200 !important;
+    box-sizing: border-box;
+}
+
+/* =========================================================
+   COMPUTADORA
+   Saturno a la izquierda + tarjeta a la derecha
+   ========================================================= */
+@media (min-width: 1101px) {
+
+    .planeta {
+        width: clamp(260px, 31vw, 400px);
+        height: clamp(260px, 31vw, 400px);
+        top: 50%;
+        left: 27%;
+        transform: translate(-50%, -50%);
+    }
+
+    .anillo {
+        z-index: 40;
+    }
+.tarjeta {
+        top: 50% !important;
+        left: 60% !important;
+        right: 5% !important;
+        bottom: auto !important;
+        transform: translateY(-50%) !important;
+        width: 43% !important;
+        max-width: 620px;
+        height: 200px !important;
+        padding: 35px 40px !important;
+        overflow: auto;
+    }
+    .tarjeta h3 {
+        font-size: 30px;
+        margin-bottom: 5px;
+    }
+
+    .tarjeta p {
+        font-size: 20px;
+        line-height: 1.35;
+    }
+}
+
+/* =========================================================
+   TABLET
+   Saturno centrado + lunas alrededor + tarjeta abajo
+   ========================================================= */
+@media (min-width: 769px) and (max-width: 1100px) {
+
+    .universo {
+        min-height: 900px;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    .planeta {
+        width: 29vw;
+        height: 29vw;
+        min-width: 210px;
+        min-height: 210px;
+        max-width: 300px;
+        max-height: 300px;
+        top: 39%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .tarjeta {
+        top: auto !important;
+        left: 50% !important;
+        right: auto !important;
+        bottom: 2.5% !important;
+        transform: translateX(-50%) !important;
+        width: 88% !important;
+        max-width: 850px;
+        height: auto !important;
+        min-height: 190px;
+        max-height: 245px;
+        padding: 20px 25px !important;
+        overflow: auto;
+    }
+
+    .tarjeta h3 {
+        font-size: 24px;
+        margin-bottom: 7px;
+    }
+
+    .tarjeta p {
+        font-size: 25px;
+        line-height: 1.45;
+    }
+}
+
+/* =========================================================
+   CELULAR
+   Saturno centrado + lunas + tarjeta visible abajo
+   ========================================================= */
+@media (max-width: 768px) {
+
+    .universo {
+        min-height: 760px;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    .titulo {
+        top: 1.5%;
+        width: 94%;
+    }
+
+    .titulo h1 {
+        font-size: clamp(34px, 10vw, 48px);
+    }
+
+    .titulo p {
+        font-size: 13px;
+    }
+
+    .planeta {
+        width: 43vw;
+        height: 43vw;
+        min-width: 165px;
+        min-height: 165px;
+        max-width: 230px;
+        max-height: 230px;
+        top: 35%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .anillo {
+        width: 175%;
+        height: 40%;
+        left: -37.5%;
+        top: 30%;
+        border-width: 5px;
+    }
+
+    .anillo::after {
+        border-width: 2px;
+    }
+
+    .tarjeta {
+        top: auto !important;
+        left: 50% !important;
+        right: auto !important;
+        bottom: 2% !important;
+        transform: translateX(-50%) !important;
+        width: 92% !important;
+        max-width: 620px;
+        height: auto !important;
+        min-height: 155px;
+        max-height: 205px;
+        padding: 14px 17px !important;
+        overflow: auto;
+    }
+
+    .tarjeta h3 {
+        font-size: 20px;
+        margin-bottom: 5px;
+    }
+
+    .tarjeta p {
+        font-size: 18px;
+        line-height: 1.35;
+    }
+
+    .universo > div[class]:not(.titulo):not(.planeta):not(.anillo):not(.tarjeta):not([class$="-container"]) h2 {
+        font-size: 7px;
+        top: 15px;
+    }
+}
+
+/* =========================================================
+   CELULAR PEQUEÑO
+   ========================================================= */
+@media (max-width: 480px) {
+
+    .universo {
+        min-height: 700px;
+    }
+
+    .planeta {
+        width: 45vw;
+        height: 45vw;
+        min-width: 155px;
+        min-height: 155px;
+        top: 36%;
+    }
+
+    .tarjeta {
+        width: 94% !important;
+        min-height: 145px;
+        max-height: 190px;
+        bottom: 1.5% !important;
+        padding: 12px 14px !important;
+    }
+
+    .tarjeta h3 {
+        font-size: 18px;
+    }
+
+    .tarjeta p {
+        font-size: 11.5px;
+    }
+}
+
+/* ---------- POSICIONES: COMPUTADORA ---------- */
+@media (min-width:1101px) {
+.mimas { width:18.0px; height:18.0px; top:53.70%; left:42.94%; }
+.enceladus { width:20.0px; height:20.0px; top:67.89%; left:11.24%; }
+.tethys { width:25.0px; height:25.0px; top:14.36%; left:31.99%; }
+.dione { width:29.0px; height:29.0px; top:75.64%; left:35.77%; }
+.rhea { width:42.0px; height:42.0px; top:39.34%; left:7.18%; }
+.Titan { width:58.0px; height:58.0px; top:38.69%; left:42.05%; }
+.Hyperion { width:22.0px; height:22.0px; top:79.72%; left:19.35%; }
+.Iapetus { width:36.0px; height:36.0px; top:14.84%; left:19.49%; }
+.Phoebe { width:31.0px; height:31.0px; top:64.19%; left:43.11%; }
+.Janus { width:15.0px; height:15.0px; top:58.76%; left:6.40%; }
+.Epimetheus { width:15.0px; height:15.0px; top:26.52%; left:36.26%; }
+.Helene { width:10.0px; height:10.0px; top:82.57%; left:30.27%; }
+.Telesto { width:10.0px; height:10.0px; top:26.56%; left:8.90%; }
+.Calypso { width:10.0px; height:10.0px; top:47.63%; left:45.63%; }
+.Atlas { width:12.0px; height:12.0px; top:76.18%; left:12.17%; }
+.Prometheus { width:13.0px; height:13.0px; top:21.26%; left:27.19%; }
+.Pandora { width:13.0px; height:13.0px; top:75.11%; left:40.63%; }
+.Pan { width:12.0px; height:12.0px; top:47.39%; left:10.98%; }
+.Ymir { width:9.0px; height:9.0px; top:31.05%; left:42.30%; }
+.Paaliaq { width:9.0px; height:9.0px; top:85.95%; left:22.91%; }
+.Tarvos { width:9.0px; height:9.0px; top:24.98%; left:17.60%; }
+.Ijiraq { width:9.0px; height:9.0px; top:59.30%; left:47.07%; }
+.Suttungr { width:9.0px; height:9.0px; top:62.33%; left:12.25%; }
+.Kiviuq { width:9.0px; height:9.0px; top:19.78%; left:33.90%; }
+.Mundilfari { width:9.0px; height:9.0px; top:84.62%; left:35.39%; }
+.Albiorix { width:9.0px; height:9.0px; top:36.92%; left:10.55%; }
+.Skathi { width:9.0px; height:9.0px; top:39.84%; left:47.37%; }
+.Erriapus { width:9.0px; height:9.0px; top:74.09%; left:18.34%; }
+.Siarnaq { width:9.0px; height:9.0px; top:17.68%; left:22.92%; }
+.Thrymr { width:9.0px; height:9.0px; top:72.19%; left:45.67%; }
+.Narvi { width:9.0px; height:9.0px; top:53.64%; left:8.44%; }
+.Methone { width:9.0px; height:9.0px; top:22.83%; left:41.17%; }
+.Pallene { width:9.0px; height:9.0px; top:78.72%; left:27.53%; }
+.Polydeuces { width:9.0px; height:9.0px; top:25.84%; left:12.76%; }
+.Daphnis { width:9.0px; height:9.0px; top:51.51%; left:43.07%; }
+.Aegir { width:9.0px; height:9.0px; top:69.98%; left:12.19%; }
+.Bebhionn { width:9.0px; height:9.0px; top:13.81%; left:30.19%; }
+.Bergelmir { width:9.0px; height:9.0px; top:74.35%; left:37.02%; }
+.Bestla { width:9.0px; height:9.0px; top:42.08%; left:6.71%; }
+.Farbauti { width:9.0px; height:9.0px; top:36.68%; left:41.43%; }
+.Fenrir { width:9.0px; height:9.0px; top:80.66%; left:20.86%; }
+.Fornjot { width:9.0px; height:9.0px; top:15.98%; left:17.76%; }
+.Hati { width:9.0px; height:9.0px; top:61.94%; left:43.76%; }
+.Hyrrokkin { width:9.0px; height:9.0px; top:61.54%; left:6.90%; }
+.Kari { width:9.0px; height:9.0px; top:25.33%; left:35.05%; }
+.Loge { width:9.0px; height:9.0px; top:82.01%; left:31.88%; }
+.Skoll { width:9.0px; height:9.0px; top:29.11%; left:7.79%; }
+.Surtur { width:9.0px; height:9.0px; top:45.10%; left:45.45%; }
+.Anthe { width:9.0px; height:9.0px; top:78.12%; left:13.53%; }
+.Jarnsaxa { width:9.0px; height:9.0px; top:21.34%; left:25.75%; }
+.Greip { width:9.0px; height:9.0px; top:73.17%; left:41.83%; }
+.Tarqeq { width:9.0px; height:9.0px; top:49.58%; left:10.90%; }
+.Aegaeon { width:9.0px; height:9.0px; top:29.03%; left:41.30%; }
+.Gridr { width:9.0px; height:9.0px; top:86.38%; left:24.72%; }
+.Angrboda { width:9.0px; height:9.0px; top:26.35%; left:16.38%; }
+.Skrymir { width:9.0px; height:9.0px; top:56.53%; left:47.47%; }
+.Gerd { width:9.0px; height:9.0px; top:64.30%; left:12.91%; }
+.LVIII { width:9.0px; height:9.0px; top:18.94%; left:32.37%; }
+.Eggther { width:9.0px; height:9.0px; top:83.36%; left:37.09%; }
+.LX { width:9.0px; height:9.0px; top:39.21%; left:9.95%; }
+.Beli { width:9.0px; height:9.0px; top:37.10%; left:46.79%; }
+.Gunnlod { width:9.0px; height:9.0px; top:75.19%; left:19.57%; }
+.Thiazzi { width:9.0px; height:9.0px; top:18.35%; left:21.32%; }
+.LXIV { width:9.0px; height:9.0px; top:69.57%; left:46.72%; }
+.Alvaldi { width:9.0px; height:9.0px; top:56.16%; left:8.69%; }
+.Geirrod { width:9.0px; height:9.0px; top:20.99%; left:39.76%; }
+.LXVII { width:9.0px; height:9.0px; top:78.55%; left:28.97%; }
+.LXVIII { width:9.0px; height:9.0px; top:27.87%; left:11.60%; }
+.LXIX { width:9.0px; height:9.0px; top:49.32%; left:43.09%; }
+.LXX { width:9.0px; height:9.0px; top:71.93%; left:13.24%; }
+.LXXI { width:9.0px; height:9.0px; top:13.49%; left:28.37%; }
+.LXXII { width:9.0px; height:9.0px; top:72.90%; left:38.21%; }
+.LXXIII { width:9.0px; height:9.0px; top:44.87%; left:6.39%; }
+.LXXIV { width:9.0px; height:9.0px; top:34.75%; left:40.72%; }
+.LXXV { width:9.0px; height:9.0px; top:81.40%; left:22.41%; }
+.LXXVI { width:9.0px; height:9.0px; top:17.36%; left:16.09%; }
+.LXXVII { width:9.0px; height:9.0px; top:59.62%; left:44.30%; }
+.LXXVIII { width:9.0px; height:9.0px; top:64.24%; left:7.55%; }
+.LXXIX { width:9.0px; height:9.0px; top:24.32%; left:33.79%; }
+.LXXX { width:9.0px; height:9.0px; top:81.24%; left:33.47%; }
+.LXXXI { width:9.0px; height:9.0px; top:31.80%; left:6.81%; }
+.LXXXII { width:9.0px; height:9.0px; top:42.60%; left:45.14%; }
+.LXXXIII { width:9.0px; height:9.0px; top:79.86%; left:14.98%; }
+.LXXXIV { width:9.0px; height:9.0px; top:21.61%; left:24.32%; }
+.LXXXV { width:9.0px; height:9.0px; top:71.06%; left:42.94%; }
+.LXXXVI { width:9.0px; height:9.0px; top:51.78%; left:10.94%; }
+.LXXXVII { width:9.0px; height:9.0px; top:27.15%; left:40.20%; }
+.LXXXVIII { width:9.0px; height:9.0px; top:86.57%; left:26.55%; }
+.LXXXIX { width:9.0px; height:9.0px; top:27.88%; left:15.23%; }
+.XC { width:9.0px; height:9.0px; top:53.71%; left:47.72%; }
+.XCI { width:9.0px; height:9.0px; top:66.17%; left:13.68%; }
+.XCII { width:9.0px; height:9.0px; top:18.32%; left:30.80%; }
+.XCIII { width:9.0px; height:9.0px; top:81.87%; left:38.72%; }
+.XCIV { width:9.0px; height:9.0px; top:41.57%; left:9.47%; }
+.XCV { width:9.0px; height:9.0px; top:34.44%; left:46.08%; }
+.XCVI { width:9.0px; height:9.0px; top:76.12%; left:20.86%; }
+.XCVII { width:9.0px; height:9.0px; top:19.23%; left:19.76%; }
+.XCVIII { width:9.0px; height:9.0px; top:66.81%; left:47.63%; }
+.XCIX { width:9.0px; height:9.0px; top:58.63%; left:9.06%; }
+.C { width:9.0px; height:9.0px; top:19.35%; left:38.27%; }
+.CI { width:9.0px; height:9.0px; top:78.19%; left:30.39%; }
+.CII { width:9.0px; height:9.0px; top:30.04%; left:10.55%; }
+.CIII { width:9.0px; height:9.0px; top:47.12%; left:43.01%; }
+.CIV { width:9.0px; height:9.0px; top:73.73%; left:14.38%; }
+.CV { width:9.0px; height:9.0px; top:13.43%; left:26.54%; }
+.CVI { width:9.0px; height:9.0px; top:71.30%; left:39.31%; }
+.CVII { width:9.0px; height:9.0px; top:47.70%; left:6.20%; }
+.CVIII { width:9.0px; height:9.0px; top:32.93%; left:39.91%; }
+.CIX { width:9.0px; height:9.0px; top:81.92%; left:24.00%; }
+.CX { width:9.0px; height:9.0px; top:18.96%; left:14.49%; }
+.CXI { width:9.0px; height:9.0px; top:57.22%; left:44.73%; }
+.CXII { width:9.0px; height:9.0px; top:66.85%; left:8.33%; }
+.CXIII { width:9.0px; height:9.0px; top:23.48%; left:32.49%; }
+.CXIV { width:9.0px; height:9.0px; top:80.25%; left:35.01%; }
+.CXV { width:9.0px; height:9.0px; top:34.61%; left:5.97%; }
+.CXVI { width:9.0px; height:9.0px; top:40.15%; left:44.71%; }
+.CXVII { width:9.0px; height:9.0px; top:81.40%; left:16.51%; }
+.CXVIII { width:9.0px; height:9.0px; top:22.07%; left:22.91%; }
+.CXIX { width:9.0px; height:9.0px; top:68.82%; left:43.94%; }
+.CXX { width:9.0px; height:9.0px; top:53.97%; left:11.08%; }
+.CXXI { width:9.0px; height:9.0px; top:25.43%; left:39.01%; }
+.CXXII { width:9.0px; height:9.0px; top:86.50%; left:28.37%; }
+.CXXIII { width:9.0px; height:9.0px; top:29.56%; left:14.17%; }
+.CXXIV { width:9.0px; height:9.0px; top:50.87%; left:47.84%; }
+.CXXV { width:9.0px; height:9.0px; top:67.93%; left:14.53%; }
+.CXXVI { width:9.0px; height:9.0px; top:17.91%; left:29.20%; }
+.CXXVII { width:9.0px; height:9.0px; top:80.16%; left:40.27%; }
+.CXXVIII { width:9.0px; height:9.0px; top:43.99%; left:9.11%; }
+.CXXIX { width:9.0px; height:9.0px; top:31.89%; left:45.24%; }
+.CXXX { width:9.0px; height:9.0px; top:76.87%; left:22.18%; }
+.CXXXI { width:9.0px; height:9.0px; top:20.33%; left:18.24%; }
+.CXXXII { width:9.0px; height:9.0px; top:63.94%; left:48.40%; }
+.CXXXIII { width:9.0px; height:9.0px; top:61.05%; left:9.55%; }
+.CXXXIV { width:9.0px; height:9.0px; top:17.91%; left:36.70%; }
+.CXXXV { width:9.0px; height:9.0px; top:77.63%; left:31.78%; }
+.CXXXVI { width:9.0px; height:9.0px; top:32.35%; left:9.60%; }
+.CXXXVII { width:9.0px; height:9.0px; top:44.95%; left:42.81%; }
+.CXXXVIII { width:9.0px; height:9.0px; top:75.37%; left:15.61%; }
+.CXXXIX { width:9.0px; height:9.0px; top:13.62%; left:24.71%; }
+.CXL { width:9.0px; height:9.0px; top:69.54%; left:40.33%; }
+.CXLI { width:9.0px; height:9.0px; top:50.55%; left:6.16%; }
+.CXLII { width:9.0px; height:9.0px; top:31.23%; left:39.01%; }
+.CXLIII { width:9.0px; height:9.0px; top:82.22%; left:25.60%; }
+.CXLIV { width:9.0px; height:9.0px; top:20.77%; left:12.98%; }
+.CXLV { width:9.0px; height:9.0px; top:54.78%; left:45.03%; }
+.CXLVI { width:9.0px; height:9.0px; top:69.34%; left:9.23%; }
+.CXLVII { width:9.0px; height:9.0px; top:22.82%; left:31.14%; }
+.CXLVIII { width:9.0px; height:9.0px; top:79.05%; left:36.49%; }
+.CXLIX { width:9.0px; height:9.0px; top:37.53%; left:5.27%; }
+.CL { width:9.0px; height:9.0px; top:37.77%; left:44.16%; }
+.CLI { width:9.0px; height:9.0px; top:82.72%; left:18.11%; }
+.CLII { width:9.0px; height:9.0px; top:22.72%; left:21.53%; }
+.CLIII { width:9.0px; height:9.0px; top:66.44%; left:44.82%; }
+.CLIV { width:9.0px; height:9.0px; top:56.12%; left:11.33%; }
+.CLV { width:9.0px; height:9.0px; top:23.87%; left:37.75%; }
+.CLVI { width:9.0px; height:9.0px; top:86.19%; left:30.19%; }
+.CLVII { width:9.0px; height:9.0px; top:31.38%; left:13.19%; }
+.CLVIII { width:9.0px; height:9.0px; top:48.03%; left:47.81%; }
+.CLIX { width:9.0px; height:9.0px; top:69.57%; left:15.47%; }
+.CLX { width:9.0px; height:9.0px; top:17.71%; left:27.59%; }
+.CLXI { width:9.0px; height:9.0px; top:78.24%; left:41.73%; }
+.CLXII { width:9.0px; height:9.0px; top:46.45%; left:8.87%; }
+.CLXIV { width:9.0px; height:9.0px; top:29.47%; left:44.27%; }
+.CLXV { width:9.0px; height:9.0px; top:77.44%; left:23.54%; }
+.CLXVI { width:9.0px; height:9.0px; top:21.62%; left:16.79%; }
+.CLXVII { width:9.0px; height:9.0px; top:60.97%; left:49.02%; }
+.CLXVIII { width:9.0px; height:9.0px; top:63.39%; left:10.16%; }
+.CLXIX { width:9.0px; height:9.0px; top:16.70%; left:35.06%; }
+.CLXX { width:9.0px; height:9.0px; top:76.88%; left:33.15%; }
+.CLXXI { width:9.0px; height:9.0px; top:34.79%; left:8.78%; }
+.CLXXII { width:9.0px; height:9.0px; top:42.81%; left:42.50%; }
+.CLXXIII { width:9.0px; height:9.0px; top:76.84%; left:16.92%; }
+.CLXXIV { width:9.0px; height:9.0px; top:14.06%; left:22.90%; }
+.CLXXV { width:9.0px; height:9.0px; top:67.66%; left:41.26%; }
+.CLXXVI { width:9.0px; height:9.0px; top:53.39%; left:6.26%; }
+.CLXXVII { width:9.0px; height:9.0px; top:29.66%; left:38.03%; }
+.CLXXVIII { width:9.0px; height:9.0px; top:82.30%; left:27.22%; }
+.CLXXIX { width:9.0px; height:9.0px; top:22.79%; left:11.57%; }
+.CLXXX { width:9.0px; height:9.0px; top:52.30%; left:45.20%; }
+.CLXXXI { width:9.0px; height:9.0px; top:71.69%; left:10.26%; }
+.CLXXXII { width:9.0px; height:9.0px; top:22.35%; left:29.77%; }
+.CLXXXIII { width:9.0px; height:9.0px; top:77.66%; left:37.91%; }
+.CLXXXIV { width:9.0px; height:9.0px; top:40.54%; left:4.72%; }
+.CLXXXV { width:9.0px; height:9.0px; top:35.47%; left:43.49%; }
+.CLXXXVI { width:9.0px; height:9.0px; top:83.82%; left:19.78%; }
+.CLXXXVII { width:9.0px; height:9.0px; top:23.56%; left:20.19%; }
+.CLXXXVIII { width:9.0px; height:9.0px; top:63.96%; left:45.58%; }
+.CLXXXIX { width:9.0px; height:9.0px; top:58.24%; left:11.69%; }
+.CXC { width:9.0px; height:9.0px; top:22.50%; left:36.40%; }
+.CXCI { width:9.0px; height:9.0px; top:85.63%; left:31.99%; }
+.CXCII { width:9.0px; height:9.0px; top:33.33%; left:12.31%; }
+.CXCIII { width:9.0px; height:9.0px; top:45.20%; left:47.64%; }
+.CXCIV { width:9.0px; height:9.0px; top:71.08%; left:16.49%; }
+.CXCV { width:9.0px; height:9.0px; top:17.74%; left:25.98%; }
+.CXCVI { width:9.0px; height:9.0px; top:76.14%; left:43.10%; }
+.CXCVII { width:9.0px; height:9.0px; top:48.94%; left:8.76%; }
+.CXCVIII { width:9.0px; height:9.0px; top:27.18%; left:43.18%; }
+.CXCIX { width:9.0px; height:9.0px; top:77.81%; left:24.92%; }
+.CC { width:9.0px; height:9.0px; top:23.11%; left:15.41%; }
+.CCI { width:9.0px; height:9.0px; top:57.93%; left:49.49%; }
+.CCII { width:9.0px; height:9.0px; top:65.65%; left:10.89%; }
+.CCIII { width:9.0px; height:9.0px; top:15.72%; left:33.37%; }
+.CCIV { width:9.0px; height:9.0px; top:75.95%; left:34.47%; }
+.CCV { width:9.0px; height:9.0px; top:37.32%; left:8.08%; }
+.CCVI { width:9.0px; height:9.0px; top:40.72%; left:42.09%; }
+.CCVII { width:9.0px; height:9.0px; top:78.12%; left:18.29%; }
+.CCVIII { width:9.0px; height:9.0px; top:14.74%; left:21.12%; }
+.CCIX { width:9.0px; height:9.0px; top:65.65%; left:42.10%; }
+.CCX { width:9.0px; height:9.0px; top:56.21%; left:6.50%; }
+.CCXI { width:9.0px; height:9.0px; top:28.22%; left:36.98%; }
+.CCXII { width:9.0px; height:9.0px; top:82.16%; left:28.83%; }
+.CCXIII { width:9.0px; height:9.0px; top:24.98%; left:10.26%; }
+.CCXIV { width:9.0px; height:9.0px; top:49.81%; left:45.26%; }
+.CCXV { width:9.0px; height:9.0px; top:73.90%; left:11.40%; }
+.CCXVI { width:9.0px; height:9.0px; top:22.07%; left:28.38%; }
+.CCXVII { width:9.0px; height:9.0px; top:76.07%; left:39.26%; }
+.CCXVIII { width:9.0px; height:9.0px; top:43.61%; left:4.33%; }
+.CCXIX { width:9.0px; height:9.0px; top:33.27%; left:42.71%; }
+.CCXX { width:9.0px; height:9.0px; top:84.69%; left:21.49%; }
+.CCXXI { width:9.0px; height:9.0px; top:24.58%; left:18.89%; }
+.CCXXII { width:9.0px; height:9.0px; top:61.37%; left:46.22%; }
+.CCXXIII { width:9.0px; height:9.0px; top:60.30%; left:12.16%; }
+.CCXXIV { width:9.0px; height:9.0px; top:21.31%; left:35.00%; }
+.CCXXV { width:9.0px; height:9.0px; top:84.83%; left:33.76%; }
+.CCXXVI { width:9.0px; height:9.0px; top:35.39%; left:11.52%; }
+.CCXXVII { width:9.0px; height:9.0px; top:42.40%; left:47.33%; }
+.CCXXVIII { width:9.0px; height:9.0px; top:72.44%; left:17.58%; }
+.CCXXIX { width:9.0px; height:9.0px; top:17.99%; left:24.37%; }
+.CCXXX { width:9.0px; height:9.0px; top:73.85%; left:44.35%; }
+.CCXXXI { width:9.0px; height:9.0px; top:51.43%; left:8.76%; }
+.CCXXXII { width:9.0px; height:9.0px; top:25.05%; left:41.99%; }
+.CCXXXIII { width:9.0px; height:9.0px; top:78.00%; left:26.32%; }
+.CCXXXIV { width:9.0px; height:9.0px; top:24.78%; left:14.10%; }
+.CCXXXV { width:9.0px; height:9.0px; top:54.83%; left:49.81%; }
+.CCXXXVI { width:9.0px; height:9.0px; top:67.79%; left:11.73%; }
+.CCXXXVII { width:9.0px; height:9.0px; top:14.96%; left:31.63%; }
+.CCXXXVIII { width:9.0px; height:9.0px; top:74.85%; left:35.74%; }
+.CCXXXIX { width:9.0px; height:9.0px; top:39.95%; left:7.52%; }
+.CCXL { width:9.0px; height:9.0px; top:38.69%; left:41.57%; }
+.CCXLI { width:9.0px; height:9.0px; top:79.21%; left:19.73%; }
+.CCXLII { width:9.0px; height:9.0px; top:15.66%; left:19.38%; }
+.CCXLIII { width:9.0px; height:9.0px; top:63.54%; left:42.83%; }
+.CCXLIV { width:9.0px; height:9.0px; top:58.98%; left:6.88%; }
+.CCXLV { width:9.0px; height:9.0px; top:26.94%; left:35.85%; }
+.CCXLVI { width:9.0px; height:9.0px; top:81.80%; left:30.43%; }
+.CCXLVII { width:9.0px; height:9.0px; top:27.35%; left:9.07%; }
+.CCXLVIII { width:9.0px; height:9.0px; top:47.32%; left:45.18%; }
+.CCXLIX { width:9.0px; height:9.0px; top:75.95%; left:12.65%; }
+.CCL { width:9.0px; height:9.0px; top:21.98%; left:26.98%; }
+.CCLI { width:9.0px; height:9.0px; top:74.31%; left:40.52%; }
+.CCLII { width:9.0px; height:9.0px; top:46.73%; left:4.09%; }
+.CCLIII { width:9.0px; height:9.0px; top:31.18%; left:41.82%; }
+.CCLIV { width:9.0px; height:9.0px; top:85.32%; left:23.25%; }
+.CCLV { width:9.0px; height:9.0px; top:25.77%; left:17.65%; }
+.CCLVI { width:9.0px; height:9.0px; top:58.71%; left:46.72%; }
+.CCLVII { width:9.0px; height:9.0px; top:62.29%; left:12.72%; }
+.CCLVIII { width:9.0px; height:9.0px; top:20.32%; left:33.54%; }
+.CCLIX { width:9.0px; height:9.0px; top:83.79%; left:35.47%; }
+.CCLX { width:9.0px; height:9.0px; top:37.55%; left:10.85%; }
+.CCLXI { width:9.0px; height:9.0px; top:39.65%; left:46.88%; }
+.CCLXII { width:9.0px; height:9.0px; top:73.65%; left:18.73%; }
+.CCLXIII { width:9.0px; height:9.0px; top:18.46%; left:22.78%; }
+.CCLXIV { width:9.0px; height:9.0px; top:71.41%; left:45.48%; }
+.CCLXV { width:9.0px; height:9.0px; top:53.92%; left:8.90%; }
+.CCLXVI { width:9.0px; height:9.0px; top:23.09%; left:40.69%; }
+.CCLXVII { width:9.0px; height:9.0px; top:78.00%; left:27.72%; }
+.CCLXVIII { width:9.0px; height:9.0px; top:26.63%; left:12.89%; }
+.CCLXX { width:9.0px; height:9.0px; top:51.71%; left:49.98%; }
+.CCLXXI { width:9.0px; height:9.0px; top:69.81%; left:12.67%; }
+.CCLXXII { width:9.0px; height:9.0px; top:14.45%; left:29.87%; }
+.CCLXXIII { width:9.0px; height:9.0px; top:73.57%; left:36.95%; }
+.CCLXXIV { width:9.0px; height:9.0px; top:42.64%; left:7.08%; }
+.CCLXXV { width:9.0px; height:9.0px; top:36.74%; left:40.96%; }
+.CCLXXVI { width:9.0px; height:9.0px; top:80.11%; left:21.21%; }
+.CCLXXVII { width:9.0px; height:9.0px; top:16.82%; left:17.69%; }
+.CCLXXVIII { width:9.0px; height:9.0px; top:61.33%; left:43.45%; }
+.CCLXXIX { width:9.0px; height:9.0px; top:61.70%; left:7.40%; }
+.CCLXXX { width:9.0px; height:9.0px; top:25.81%; left:34.67%; }
+.CCLXXXI { width:9.0px; height:9.0px; top:81.22%; left:32.01%; }
+.CCLXXXIII { width:9.0px; height:9.0px; top:29.87%; left:8.00%; }
+.CCLXXXIV { width:9.0px; height:9.0px; top:44.85%; left:44.99%; }
+.CCLXXXV { width:9.0px; height:9.0px; top:77.82%; left:14.00%; }
+.CCLXXXVI { width:9.0px; height:9.0px; top:22.07%; left:25.58%; }
+.CCLXXXVII { width:9.0px; height:9.0px; top:72.39%; left:41.69%; }
+.CCLXXXVIII { width:9.0px; height:9.0px; top:49.86%; left:4.00%; }
+.CCLXXXIX { width:9.0px; height:9.0px; top:29.23%; left:40.82%; }
+.CCXC { width:9.0px; height:9.0px; top:85.71%; left:25.02%; }
+.CCXCI { width:9.0px; height:9.0px; top:27.13%; left:16.47%; }
+.CCXCII { width:9.0px; height:9.0px; top:55.99%; left:47.09%; }
+.CCXCIII { width:9.0px; height:9.0px; top:64.20%; left:13.38%; }
+.CCXCIV { width:9.0px; height:9.0px; top:19.53%; left:32.03%; }
+.CCXCV { width:9.0px; height:9.0px; top:82.52%; left:37.13%; }
+.CCXCVI { width:9.0px; height:9.0px; top:39.80%; left:10.28%; }
+}
+
+/* ---------- POSICIONES: TABLET ---------- */
+@media (min-width:769px) and (max-width:1100px) {
+.mimas { width:14.8px; height:14.8px; top:44.44%; left:76.37%; }
+.enceladus { width:16.4px; height:16.4px; top:50.51%; left:21.24%; }
+.tethys { width:20.5px; height:20.5px; top:11.87%; left:62.85%; }
+.dione { width:23.8px; height:23.8px; top:60.48%; left:61.56%; }
+.rhea { width:34.4px; height:34.4px; top:27.50%; left:17.98%; }
+.Titan { width:47.6px; height:47.6px; top:32.53%; left:76.74%; }
+.Hyperion { width:18.0px; height:18.0px; top:61.07%; left:33.40%; }
+.Iapetus { width:29.5px; height:29.5px; top:10.25%; left:41.75%; }
+.Phoebe { width:25.4px; height:25.4px; top:52.68%; left:75.34%; }
+.Janus { width:12.3px; height:12.3px; top:42.59%; left:14.23%; }
+.Epimetheus { width:12.3px; height:12.3px; top:22.07%; left:68.52%; }
+.Helene { width:8.2px; height:8.2px; top:65.04%; left:51.43%; }
+.Telesto { width:8.2px; height:8.2px; top:17.75%; left:22.47%; }
+.Calypso { width:8.2px; height:8.2px; top:40.11%; left:81.65%; }
+.Atlas { width:9.8px; height:9.8px; top:57.16%; left:21.76%; }
+.Prometheus { width:10.7px; height:10.7px; top:16.51%; left:53.91%; }
+.Pandora { width:10.7px; height:10.7px; top:60.84%; left:69.79%; }
+.Pan { width:9.8px; height:9.8px; top:34.41%; left:23.36%; }
+.Ymir { width:7.4px; height:7.4px; top:26.58%; left:78.11%; }
+.Paaliaq { width:7.4px; height:7.4px; top:66.52%; left:38.62%; }
+.Tarvos { width:7.4px; height:7.4px; top:17.90%; left:37.30%; }
+.Ijiraq { width:7.4px; height:7.4px; top:49.48%; left:82.61%; }
+.Suttungr { width:7.4px; height:7.4px; top:46.31%; left:23.63%; }
+.Kiviuq { width:7.4px; height:7.4px; top:16.42%; left:65.40%; }
+.Mundilfari { width:7.4px; height:7.4px; top:67.46%; left:59.78%; }
+.Albiorix { width:7.4px; height:7.4px; top:26.14%; left:23.95%; }
+.Skathi { width:7.4px; height:7.4px; top:34.28%; left:85.55%; }
+.Erriapus { width:7.4px; height:7.4px; top:56.50%; left:32.41%; }
+.Siarnaq { width:7.4px; height:7.4px; top:13.03%; left:47.18%; }
+.Thrymr { width:7.4px; height:7.4px; top:59.35%; left:78.65%; }
+.Narvi { width:7.4px; height:7.4px; top:38.90%; left:18.31%; }
+.Methone { width:7.4px; height:7.4px; top:19.96%; left:77.24%; }
+.Pallene { width:7.4px; height:7.4px; top:61.59%; left:47.30%; }
+.Polydeuces { width:7.4px; height:7.4px; top:17.80%; left:29.05%; }
+.Daphnis { width:7.4px; height:7.4px; top:42.74%; left:76.86%; }
+.Aegir { width:7.4px; height:7.4px; top:52.30%; left:22.58%; }
+.Bebhionn { width:7.4px; height:7.4px; top:11.15%; left:59.89%; }
+.Bergelmir { width:7.4px; height:7.4px; top:59.68%; left:63.82%; }
+.Bestla { width:7.4px; height:7.4px; top:29.57%; left:16.85%; }
+.Farbauti { width:7.4px; height:7.4px; top:30.85%; left:75.95%; }
+.Fenrir { width:7.4px; height:7.4px; top:62.05%; left:35.83%; }
+.Fornjot { width:7.4px; height:7.4px; top:10.88%; left:38.70%; }
+.Hati { width:7.4px; height:7.4px; top:51.02%; left:76.72%; }
+.Hyrrokkin { width:7.4px; height:7.4px; top:44.85%; left:14.74%; }
+.Kari { width:7.4px; height:7.4px; top:20.95%; left:66.64%; }
+.Loge { width:7.4px; height:7.4px; top:64.86%; left:54.22%; }
+.Skoll { width:7.4px; height:7.4px; top:19.57%; left:20.28%; }
+.Surtur { width:7.4px; height:7.4px; top:38.09%; left:81.67%; }
+.Anthe { width:7.4px; height:7.4px; top:58.89%; left:23.81%; }
+.Jarnsaxa { width:7.4px; height:7.4px; top:16.34%; left:51.48%; }
+.Greip { width:7.4px; height:7.4px; top:59.51%; left:72.07%; }
+.Tarqeq { width:7.4px; height:7.4px; top:36.12%; left:22.96%; }
+.Aegaeon { width:7.4px; height:7.4px; top:24.84%; left:76.69%; }
+.Gridr { width:7.4px; height:7.4px; top:67.14%; left:41.61%; }
+.Angrboda { width:7.4px; height:7.4px; top:18.78%; left:35.08%; }
+.Skrymir { width:7.4px; height:7.4px; top:47.37%; left:83.63%; }
+.Gerd { width:7.4px; height:7.4px; top:47.96%; left:24.51%; }
+.LVIII { width:7.4px; height:7.4px; top:15.52%; left:62.92%; }
+.Eggther { width:7.4px; height:7.4px; top:66.74%; left:62.81%; }
+.LX { width:7.4px; height:7.4px; top:27.84%; left:22.66%; }
+.Beli { width:7.4px; height:7.4px; top:32.04%; left:84.92%; }
+.Gunnlod { width:7.4px; height:7.4px; top:57.56%; left:34.35%; }
+.Thiazzi { width:7.4px; height:7.4px; top:13.30%; left:44.40%; }
+.LXIV { width:7.4px; height:7.4px; top:57.47%; left:80.74%; }
+.Alvaldi { width:7.4px; height:7.4px; top:40.91%; left:18.41%; }
+.Geirrod { width:7.4px; height:7.4px; top:18.30%; left:75.10%; }
+.LXVII { width:7.4px; height:7.4px; top:61.69%; left:49.74%; }
+.LXVIII { width:7.4px; height:7.4px; top:19.21%; left:26.85%; }
+.LXIX { width:7.4px; height:7.4px; top:41.02%; left:77.17%; }
+.LXX { width:7.4px; height:7.4px; top:54.00%; left:24.10%; }
+.LXXI { width:7.4px; height:7.4px; top:10.61%; left:56.87%; }
+.LXXII { width:7.4px; height:7.4px; top:58.73%; left:65.99%; }
+.LXXIII { width:7.4px; height:7.4px; top:31.71%; left:15.95%; }
+.LXXIV { width:7.4px; height:7.4px; top:29.23%; left:74.99%; }
+.LXXV { width:7.4px; height:7.4px; top:62.87%; left:38.35%; }
+.LXXVI { width:7.4px; height:7.4px; top:11.69%; left:35.72%; }
+.LXXVII { width:7.4px; height:7.4px; top:49.29%; left:77.92%; }
+.LXXVIII { width:7.4px; height:7.4px; top:47.07%; left:15.48%; }
+.LXXIX { width:7.4px; height:7.4px; top:19.96%; left:64.64%; }
+.LXXX { width:7.4px; height:7.4px; top:64.50%; left:56.98%; }
+.LXXXI { width:7.4px; height:7.4px; top:21.53%; left:18.30%; }
+.LXXXII { width:7.4px; height:7.4px; top:36.08%; left:81.46%; }
+.LXXXIII { width:7.4px; height:7.4px; top:60.49%; left:26.03%; }
+.LXXXIV { width:7.4px; height:7.4px; top:16.32%; left:49.04%; }
+.LXXXV { width:7.4px; height:7.4px; top:58.04%; left:74.19%; }
+.LXXXVI { width:7.4px; height:7.4px; top:37.84%; left:22.74%; }
+.LXXXVII { width:7.4px; height:7.4px; top:23.19%; left:75.08%; }
+.LXXXVIII { width:7.4px; height:7.4px; top:67.58%; left:44.66%; }
+.LXXXIX { width:7.4px; height:7.4px; top:19.80%; left:32.96%; }
+.XC { width:7.4px; height:7.4px; top:45.20%; left:84.41%; }
+.XCI { width:7.4px; height:7.4px; top:49.55%; left:25.56%; }
+.XCII { width:7.4px; height:7.4px; top:14.78%; left:60.36%; }
+.XCIII { width:7.4px; height:7.4px; top:65.83%; left:65.74%; }
+.XCIV { width:7.4px; height:7.4px; top:29.61%; left:21.55%; }
+.XCV { width:7.4px; height:7.4px; top:29.84%; left:84.05%; }
+.XCVI { width:7.4px; height:7.4px; top:58.49%; left:36.39%; }
+.XCVII { width:7.4px; height:7.4px; top:13.74%; left:41.66%; }
+.XCVIII { width:7.4px; height:7.4px; top:55.45%; left:82.61%; }
+.XCIX { width:7.4px; height:7.4px; top:42.91%; left:18.72%; }
+.C { width:7.4px; height:7.4px; top:16.77%; left:72.80%; }
+.CI { width:7.4px; height:7.4px; top:61.63%; left:52.17%; }
+.CII { width:7.4px; height:7.4px; top:20.75%; left:24.80%; }
+.CIII { width:7.4px; height:7.4px; top:39.29%; left:77.30%; }
+.CIV { width:7.4px; height:7.4px; top:55.59%; left:25.80%; }
+.CV { width:7.4px; height:7.4px; top:10.27%; left:53.80%; }
+.CVI { width:7.4px; height:7.4px; top:57.64%; left:68.06%; }
+.CVII { width:7.4px; height:7.4px; top:33.89%; left:15.28%; }
+.CVIII { width:7.4px; height:7.4px; top:27.68%; left:73.86%; }
+.CIX { width:7.4px; height:7.4px; top:63.53%; left:40.95%; }
+.CX { width:7.4px; height:7.4px; top:12.69%; left:32.83%; }
+.CXI { width:7.4px; height:7.4px; top:47.48%; left:78.93%; }
+.CXII { width:7.4px; height:7.4px; top:49.23%; left:16.47%; }
+.CXIII { width:7.4px; height:7.4px; top:19.09%; left:62.55%; }
+.CXIV { width:7.4px; height:7.4px; top:63.97%; left:59.69%; }
+.CXV { width:7.4px; height:7.4px; top:23.60%; left:16.53%; }
+.CXVI { width:7.4px; height:7.4px; top:34.10%; left:81.04%; }
+.CXVII { width:7.4px; height:7.4px; top:61.93%; left:28.42%; }
+.CXVIII { width:7.4px; height:7.4px; top:16.46%; left:46.61%; }
+.CXIX { width:7.4px; height:7.4px; top:56.44%; left:76.16%; }
+.CXX { width:7.4px; height:7.4px; top:39.58%; left:22.71%; }
+.CXXI { width:7.4px; height:7.4px; top:21.66%; left:73.29%; }
+.CXXII { width:7.4px; height:7.4px; top:67.82%; left:47.75%; }
+.CXXIII { width:7.4px; height:7.4px; top:20.94%; left:30.96%; }
+.CXXIV { width:7.4px; height:7.4px; top:43.00%; left:84.96%; }
+.CXXV { width:7.4px; height:7.4px; top:51.07%; left:26.77%; }
+.CXXVI { width:7.4px; height:7.4px; top:14.20%; left:57.72%; }
+.CXXVII { width:7.4px; height:7.4px; top:64.74%; left:68.57%; }
+.CXXVIII { width:7.4px; height:7.4px; top:31.45%; left:20.64%; }
+.CXXIX { width:7.4px; height:7.4px; top:27.71%; left:82.95%; }
+.CXXX { width:7.4px; height:7.4px; top:59.29%; left:38.53%; }
+.CXXXI { width:7.4px; height:7.4px; top:14.36%; left:38.97%; }
+.CXXXII { width:7.4px; height:7.4px; top:53.32%; left:84.27%; }
+.CXXXIII { width:7.4px; height:7.4px; top:44.89%; left:19.25%; }
+.CXXXIV { width:7.4px; height:7.4px; top:15.40%; left:70.33%; }
+.CXXXV { width:7.4px; height:7.4px; top:61.41%; left:54.59%; }
+.CXXXVI { width:7.4px; height:7.4px; top:22.41%; left:22.93%; }
+.CXXXVII { width:7.4px; height:7.4px; top:37.56%; left:77.24%; }
+.CXXXVIII { width:7.4px; height:7.4px; top:57.07%; left:27.66%; }
+.CXXXIX { width:7.4px; height:7.4px; top:10.13%; left:50.70%; }
+.CXL { width:7.4px; height:7.4px; top:56.43%; left:70.00%; }
+.CXLI { width:7.4px; height:7.4px; top:36.12%; left:14.86%; }
+.CXLII { width:7.4px; height:7.4px; top:26.20%; left:72.56%; }
+.CXLIII { width:7.4px; height:7.4px; top:64.02%; left:43.62%; }
+.CXLIV { width:7.4px; height:7.4px; top:13.87%; left:30.07%; }
+.CXLV { width:7.4px; height:7.4px; top:45.61%; left:79.74%; }
+.CXLVI { width:7.4px; height:7.4px; top:51.33%; left:17.68%; }
+.CXLVII { width:7.4px; height:7.4px; top:18.36%; left:60.37%; }
+.CXLVIII { width:7.4px; height:7.4px; top:63.27%; left:62.34%; }
+.CXLIX { width:7.4px; height:7.4px; top:25.78%; left:14.99%; }
+.CL { width:7.4px; height:7.4px; top:32.14%; left:80.41%; }
+.CLI { width:7.4px; height:7.4px; top:63.23%; left:30.95%; }
+.CLII { width:7.4px; height:7.4px; top:16.75%; left:44.21%; }
+.CLIII { width:7.4px; height:7.4px; top:54.72%; left:77.94%; }
+.CLIV { width:7.4px; height:7.4px; top:41.31%; left:22.87%; }
+.CLV { width:7.4px; height:7.4px; top:20.24%; left:71.35%; }
+.CLVI { width:7.4px; height:7.4px; top:67.87%; left:50.85%; }
+.CLVII { width:7.4px; height:7.4px; top:22.22%; left:29.08%; }
+.CLVIII { width:7.4px; height:7.4px; top:40.76%; left:85.27%; }
+.CLIX { width:7.4px; height:7.4px; top:52.50%; left:28.15%; }
+.CLX { width:7.4px; height:7.4px; top:13.80%; left:55.03%; }
+.CLXI { width:7.4px; height:7.4px; top:63.47%; left:71.27%; }
+.CLXII { width:7.4px; height:7.4px; top:33.34%; left:19.93%; }
+.CLXIV { width:7.4px; height:7.4px; top:25.66%; left:81.63%; }
+.CLXV { width:7.4px; height:7.4px; top:59.95%; left:40.75%; }
+.CLXVI { width:7.4px; height:7.4px; top:15.14%; left:36.37%; }
+.CLXVII { width:7.4px; height:7.4px; top:51.10%; left:85.69%; }
+.CLXVIII { width:7.4px; height:7.4px; top:46.82%; left:19.99%; }
+.CLXIX { width:7.4px; height:7.4px; top:14.19%; left:67.73%; }
+.CLXX { width:7.4px; height:7.4px; top:61.04%; left:56.98%; }
+.CLXXI { width:7.4px; height:7.4px; top:24.18%; left:21.24%; }
+.CLXXII { width:7.4px; height:7.4px; top:35.83%; left:76.99%; }
+.CLXXIII { width:7.4px; height:7.4px; top:58.43%; left:29.67%; }
+.CLXXIV { width:7.4px; height:7.4px; top:10.18%; left:47.60%; }
+.CLXXV { width:7.4px; height:7.4px; top:55.10%; left:71.80%; }
+.CLXXVI { width:7.4px; height:7.4px; top:38.36%; left:14.67%; }
+.CLXXVII { width:7.4px; height:7.4px; top:24.81%; left:71.11%; }
+.CLXXVIII { width:7.4px; height:7.4px; top:64.34%; left:46.32%; }
+.CLXXIX { width:7.4px; height:7.4px; top:15.22%; left:27.44%; }
+.CLXXX { width:7.4px; height:7.4px; top:43.70%; left:80.35%; }
+.CLXXXI { width:7.4px; height:7.4px; top:53.34%; left:19.11%; }
+.CLXXXII { width:7.4px; height:7.4px; top:17.77%; left:58.12%; }
+.CLXXXIII { width:7.4px; height:7.4px; top:62.41%; left:64.90%; }
+.CLXXXIV { width:7.4px; height:7.4px; top:28.05%; left:13.69%; }
+.CLXXXV { width:7.4px; height:7.4px; top:30.23%; left:79.57%; }
+.CLXXXVI { width:7.4px; height:7.4px; top:64.35%; left:33.62%; }
+.CLXXXVII { width:7.4px; height:7.4px; top:17.20%; left:41.84%; }
+.CLXXXVIII { width:7.4px; height:7.4px; top:52.89%; left:79.53%; }
+.CLXXXIX { width:7.4px; height:7.4px; top:43.02%; left:23.21%; }
+.CXC { width:7.4px; height:7.4px; top:18.94%; left:69.27%; }
+.CXCI { width:7.4px; height:7.4px; top:67.72%; left:53.94%; }
+.CXCII { width:7.4px; height:7.4px; top:23.60%; left:27.35%; }
+.CXCIII { width:7.4px; height:7.4px; top:38.52%; left:85.34%; }
+.CXCIV { width:7.4px; height:7.4px; top:53.85%; left:29.67%; }
+.CXCV { width:7.4px; height:7.4px; top:13.56%; left:52.31%; }
+.CXCVI { width:7.4px; height:7.4px; top:62.04%; left:73.82%; }
+.CXCVII { width:7.4px; height:7.4px; top:35.27%; left:19.43%; }
+.CXCVIII { width:7.4px; height:7.4px; top:23.69%; left:80.09%; }
+.CXCIX { width:7.4px; height:7.4px; top:60.47%; left:43.03%; }
+.CC { width:7.4px; height:7.4px; top:16.09%; left:33.85%; }
+.CCI { width:7.4px; height:7.4px; top:48.79%; left:86.87%; }
+.CCII { width:7.4px; height:7.4px; top:48.70%; left:20.93%; }
+.CCIII { width:7.4px; height:7.4px; top:13.15%; left:65.01%; }
+.CCIV { width:7.4px; height:7.4px; top:60.52%; left:59.33%; }
+.CCV { width:7.4px; height:7.4px; top:26.06%; left:19.75%; }
+.CCVI { width:7.4px; height:7.4px; top:34.13%; left:76.55%; }
+.CCVII { width:7.4px; height:7.4px; top:59.65%; left:31.83%; }
+.CCVIII { width:7.4px; height:7.4px; top:10.43%; left:44.52%; }
+.CCIX { width:7.4px; height:7.4px; top:53.67%; left:73.45%; }
+.CCX { width:7.4px; height:7.4px; top:40.61%; left:14.72%; }
+.CCXI { width:7.4px; height:7.4px; top:23.52%; left:69.52%; }
+.CCXII { width:7.4px; height:7.4px; top:64.49%; left:49.06%; }
+.CCXIII { width:7.4px; height:7.4px; top:16.74%; left:24.96%; }
+.CCXIV { width:7.4px; height:7.4px; top:41.76%; left:80.75%; }
+.CCXV { width:7.4px; height:7.4px; top:55.25%; left:20.76%; }
+.CCXVI { width:7.4px; height:7.4px; top:17.33%; left:55.81%; }
+.CCXVII { width:7.4px; height:7.4px; top:61.38%; left:67.36%; }
+.CCXVIII { width:7.4px; height:7.4px; top:30.39%; left:12.64%; }
+.CCXIX { width:7.4px; height:7.4px; top:28.39%; left:78.53%; }
+.CCXX { width:7.4px; height:7.4px; top:65.31%; left:36.40%; }
+.CCXXI { width:7.4px; height:7.4px; top:17.79%; left:39.53%; }
+.CCXXII { width:7.4px; height:7.4px; top:50.97%; left:80.92%; }
+.CCXXIII { width:7.4px; height:7.4px; top:44.71%; left:23.73%; }
+.CCXXIV { width:7.4px; height:7.4px; top:17.79%; left:67.05%; }
+.CCXXV { width:7.4px; height:7.4px; top:67.37%; left:57.01%; }
+.CCXXVI { width:7.4px; height:7.4px; top:25.09%; left:25.78%; }
+.CCXXVII { width:7.4px; height:7.4px; top:36.27%; left:85.17%; }
+.CCXXVIII { width:7.4px; height:7.4px; top:55.09%; left:31.33%; }
+.CCXXIX { width:7.4px; height:7.4px; top:13.50%; left:49.57%; }
+.CCXXX { width:7.4px; height:7.4px; top:60.45%; left:76.21%; }
+.CCXXXI { width:7.4px; height:7.4px; top:37.22%; left:19.13%; }
+.CCXXXII { width:7.4px; height:7.4px; top:21.83%; left:78.34%; }
+.CCXXXIII { width:7.4px; height:7.4px; top:60.83%; left:45.36%; }
+.CCXXXIV { width:7.4px; height:7.4px; top:17.19%; left:31.45%; }
+.CCXXXV { width:7.4px; height:7.4px; top:46.41%; left:87.79%; }
+.CCXXXVI { width:7.4px; height:7.4px; top:50.51%; left:22.07%; }
+.CCXXXVII { width:7.4px; height:7.4px; top:12.28%; left:62.18%; }
+.CCXXXVIII { width:7.4px; height:7.4px; top:59.86%; left:61.60%; }
+.CCXXXIX { width:7.4px; height:7.4px; top:28.03%; left:18.46%; }
+.CCXL { width:7.4px; height:7.4px; top:32.46%; left:75.94%; }
+.CCXLI { width:7.4px; height:7.4px; top:60.74%; left:34.11%; }
+.CCXLII { width:7.4px; height:7.4px; top:10.88%; left:41.47%; }
+.CCXLIII { width:7.4px; height:7.4px; top:52.13%; left:74.95%; }
+.CCXLIV { width:7.4px; height:7.4px; top:42.84%; left:15.01%; }
+.CCXLV { width:7.4px; height:7.4px; top:22.33%; left:67.79%; }
+.CCXLVI { width:7.4px; height:7.4px; top:64.46%; left:51.80%; }
+.CCXLVII { width:7.4px; height:7.4px; top:18.40%; left:22.66%; }
+.CCXLVIII { width:7.4px; height:7.4px; top:39.79%; left:80.94%; }
+.CCXLIX { width:7.4px; height:7.4px; top:57.05%; left:22.60%; }
+.CCL { width:7.4px; height:7.4px; top:17.04%; left:53.47%; }
+.CCLI { width:7.4px; height:7.4px; top:60.20%; left:69.71%; }
+.CCLII { width:7.4px; height:7.4px; top:32.79%; left:11.84%; }
+.CCLIII { width:7.4px; height:7.4px; top:26.61%; left:77.29%; }
+.CCLIV { width:7.4px; height:7.4px; top:66.08%; left:39.27%; }
+.CCLV { width:7.4px; height:7.4px; top:18.53%; left:37.29%; }
+.CCLVI { width:7.4px; height:7.4px; top:48.96%; left:82.10%; }
+.CCLVII { width:7.4px; height:7.4px; top:46.36%; left:24.43%; }
+.CCLVIII { width:7.4px; height:7.4px; top:16.78%; left:64.71%; }
+.CCLIX { width:7.4px; height:7.4px; top:66.82%; left:60.03%; }
+.CCLX { width:7.4px; height:7.4px; top:26.68%; left:24.37%; }
+.CCLXI { width:7.4px; height:7.4px; top:34.05%; left:84.75%; }
+.CCLXII { width:7.4px; height:7.4px; top:56.22%; left:33.12%; }
+.CCLXIII { width:7.4px; height:7.4px; top:13.62%; left:46.84%; }
+.CCLXIV { width:7.4px; height:7.4px; top:58.71%; left:78.42%; }
+.CCLXV { width:7.4px; height:7.4px; top:39.19%; left:19.04%; }
+.CCLXVI { width:7.4px; height:7.4px; top:20.09%; left:76.40%; }
+.CCLXVII { width:7.4px; height:7.4px; top:61.06%; left:47.71%; }
+.CCLXVIII { width:7.4px; height:7.4px; top:18.44%; left:29.17%; }
+.CCLXX { width:7.4px; height:7.4px; top:43.99%; left:88.46%; }
+.CCLXXI { width:7.4px; height:7.4px; top:52.25%; left:23.40%; }
+.CCLXXII { width:7.4px; height:7.4px; top:11.60%; left:59.27%; }
+.CCLXXIII { width:7.4px; height:7.4px; top:59.05%; left:63.80%; }
+.CCLXXIV { width:7.4px; height:7.4px; top:30.07%; left:17.39%; }
+.CCLXXV { width:7.4px; height:7.4px; top:30.83%; left:75.15%; }
+.CCLXXVI { width:7.4px; height:7.4px; top:61.67%; left:36.49%; }
+.CCLXXVII { width:7.4px; height:7.4px; top:11.52%; left:38.48%; }
+.CCLXXVIII { width:7.4px; height:7.4px; top:50.50%; left:76.27%; }
+.CCLXXIX { width:7.4px; height:7.4px; top:45.05%; left:15.54%; }
+.CCLXXX { width:7.4px; height:7.4px; top:21.26%; left:65.94%; }
+.CCLXXXI { width:7.4px; height:7.4px; top:64.26%; left:54.52%; }
+.CCLXXXIII { width:7.4px; height:7.4px; top:20.21%; left:20.54%; }
+.CCLXXXIV { width:7.4px; height:7.4px; top:37.83%; left:80.92%; }
+.CCLXXXV { width:7.4px; height:7.4px; top:58.73%; left:24.63%; }
+.CCLXXXVI { width:7.4px; height:7.4px; top:16.89%; left:51.10%; }
+.CCLXXXVII { width:7.4px; height:7.4px; top:58.88%; left:71.92%; }
+.CCLXXXVIII { width:7.4px; height:7.4px; top:35.24%; left:11.31%; }
+.CCLXXXIX { width:7.4px; height:7.4px; top:24.92%; left:75.87%; }
+.CCXC { width:7.4px; height:7.4px; top:66.67%; left:42.21%; }
+.CCXCI { width:7.4px; height:7.4px; top:19.41%; left:35.13%; }
+.CCXCII { width:7.4px; height:7.4px; top:46.89%; left:83.06%; }
+.CCXCIII { width:7.4px; height:7.4px; top:47.96%; left:25.31%; }
+.CCXCIV { width:7.4px; height:7.4px; top:15.92%; left:62.28%; }
+.CCXCV { width:7.4px; height:7.4px; top:66.09%; left:62.99%; }
+.CCXCVI { width:7.4px; height:7.4px; top:28.35%; left:23.13%; }
+}
+
+/* ---------- POSICIONES: CELULAR ---------- */
+@media (max-width:768px) {
+.mimas { width:13.0px; height:13.0px; top:45.10%; left:74.25%; }
+.enceladus { width:14.4px; height:14.4px; top:40.67%; left:17.54%; }
+.tethys { width:18.0px; height:18.0px; top:15.50%; left:72.09%; }
+.dione { width:20.9px; height:20.9px; top:55.98%; left:54.03%; }
+.rhea { width:30.2px; height:30.2px; top:20.84%; left:22.24%; }
+.Titan { width:41.8px; height:41.8px; top:35.20%; left:78.72%; }
+.Hyperion { width:15.8px; height:15.8px; top:51.61%; left:25.94%; }
+.Iapetus { width:25.9px; height:25.9px; top:10.51%; left:51.75%; }
+.Phoebe { width:22.3px; height:22.3px; top:51.82%; left:70.38%; }
+.Janus { width:10.8px; height:10.8px; top:32.83%; left:13.32%; }
+.Epimetheus { width:10.8px; height:10.8px; top:25.02%; left:74.19%; }
+.Helene { width:7.2px; height:7.2px; top:58.04%; left:42.43%; }
+.Telesto { width:7.2px; height:7.2px; top:13.46%; left:30.06%; }
+.Calypso { width:7.2px; height:7.2px; top:42.39%; left:80.98%; }
+.Atlas { width:8.6px; height:8.6px; top:46.33%; left:15.76%; }
+.Prometheus { width:9.4px; height:9.4px; top:17.85%; left:61.63%; }
+.Pandora { width:9.4px; height:9.4px; top:57.70%; left:62.07%; }
+.Pan { width:8.6px; height:8.6px; top:27.56%; left:25.19%; }
+.Ymir { width:6.5px; height:6.5px; top:30.46%; left:82.14%; }
+.Paaliaq { width:6.5px; height:6.5px; top:57.07%; left:29.23%; }
+.Tarvos { width:6.5px; height:6.5px; top:16.15%; left:44.70%; }
+.Ijiraq { width:6.5px; height:6.5px; top:50.40%; left:78.70%; }
+.Suttungr { width:6.5px; height:6.5px; top:37.57%; left:21.35%; }
+.Kiviuq { width:6.5px; height:6.5px; top:19.75%; left:73.05%; }
+.Mundilfari { width:6.5px; height:6.5px; top:61.51%; left:49.87%; }
+.Albiorix { width:6.5px; height:6.5px; top:20.74%; left:28.63%; }
+.Skathi { width:6.5px; height:6.5px; top:38.18%; left:86.85%; }
+.Erriapus { width:6.5px; height:6.5px; top:47.62%; left:26.53%; }
+.Siarnaq { width:6.5px; height:6.5px; top:13.77%; left:56.16%; }
+.Thrymr { width:6.5px; height:6.5px; top:57.98%; left:71.36%; }
+.Narvi { width:6.5px; height:6.5px; top:30.45%; left:18.64%; }
+.Methone { width:6.5px; height:6.5px; top:24.76%; left:83.56%; }
+.Pallene { width:6.5px; height:6.5px; top:54.45%; left:39.53%; }
+.Polydeuces { width:6.5px; height:6.5px; top:14.64%; left:36.56%; }
+.Daphnis { width:6.5px; height:6.5px; top:43.77%; left:75.32%; }
+.Aegir { width:6.5px; height:6.5px; top:42.40%; left:18.24%; }
+.Bebhionn { width:6.5px; height:6.5px; top:14.39%; left:69.41%; }
+.Bergelmir { width:6.5px; height:6.5px; top:55.69%; left:56.56%; }
+.Bestla { width:6.5px; height:6.5px; top:22.39%; left:20.41%; }
+.Farbauti { width:6.5px; height:6.5px; top:33.66%; left:78.52%; }
+.Fenrir { width:6.5px; height:6.5px; top:52.85%; left:28.00%; }
+.Fornjot { width:6.5px; height:6.5px; top:10.51%; left:48.51%; }
+.Hati { width:6.5px; height:6.5px; top:50.68%; left:72.32%; }
+.Hyrrokkin { width:6.5px; height:6.5px; top:34.81%; left:13.05%; }
+.Kari { width:6.5px; height:6.5px; top:23.76%; left:72.71%; }
+.Loge { width:6.5px; height:6.5px; top:58.38%; left:45.25%; }
+.Skoll { width:6.5px; height:6.5px; top:14.61%; left:27.26%; }
+.Surtur { width:6.5px; height:6.5px; top:40.70%; left:81.68%; }
+.Anthe { width:6.5px; height:6.5px; top:48.13%; left:17.19%; }
+.Jarnsaxa { width:6.5px; height:6.5px; top:17.29%; left:59.29%; }
+.Greip { width:6.5px; height:6.5px; top:56.98%; left:64.78%; }
+.Tarqeq { width:6.5px; height:6.5px; top:28.92%; left:24.21%; }
+.Aegaeon { width:6.5px; height:6.5px; top:28.75%; left:81.32%; }
+.Gridr { width:6.5px; height:6.5px; top:58.11%; left:31.98%; }
+.Angrboda { width:6.5px; height:6.5px; top:16.50%; left:42.20%; }
+.Skrymir { width:6.5px; height:6.5px; top:48.81%; left:80.43%; }
+.Gerd { width:6.5px; height:6.5px; top:39.11%; left:21.65%; }
+.LVIII { width:6.5px; height:6.5px; top:18.57%; left:70.91%; }
+.Eggther { width:6.5px; height:6.5px; top:61.43%; left:53.11%; }
+.LX { width:6.5px; height:6.5px; top:21.94%; left:26.76%; }
+.Beli { width:6.5px; height:6.5px; top:36.20%; left:87.00%; }
+.Gunnlod { width:6.5px; height:6.5px; top:48.84%; left:28.09%; }
+.Thiazzi { width:6.5px; height:6.5px; top:13.52%; left:53.32%; }
+.LXIV { width:6.5px; height:6.5px; top:56.76%; left:74.08%; }
+.Alvaldi { width:6.5px; height:6.5px; top:32.15%; left:18.04%; }
+.Geirrod { width:6.5px; height:6.5px; top:23.00%; left:82.02%; }
+.LXVII { width:6.5px; height:6.5px; top:54.95%; left:41.91%; }
+.LXVIII { width:6.5px; height:6.5px; top:15.44%; left:33.89%; }
+.LXIX { width:6.5px; height:6.5px; top:42.38%; left:76.22%; }
+.LXX { width:6.5px; height:6.5px; top:44.08%; left:19.16%; }
+.LXXI { width:6.5px; height:6.5px; top:13.42%; left:66.60%; }
+.LXXII { width:6.5px; height:6.5px; top:55.27%; left:59.04%; }
+.LXXIII { width:6.5px; height:6.5px; top:24.02%; left:18.78%; }
+.LXXIV { width:6.5px; height:6.5px; top:32.14%; left:78.13%; }
+.LXXV { width:6.5px; height:6.5px; top:53.98%; left:30.22%; }
+.LXXVI { width:6.5px; height:6.5px; top:10.67%; left:45.27%; }
+.LXXVII { width:6.5px; height:6.5px; top:49.43%; left:74.11%; }
+.LXXVIII { width:6.5px; height:6.5px; top:36.80%; left:13.02%; }
+.LXXIX { width:6.5px; height:6.5px; top:22.59%; left:71.08%; }
+.LXXX { width:6.5px; height:6.5px; top:58.55%; left:48.11%; }
+.LXXXI { width:6.5px; height:6.5px; top:15.90%; left:24.62%; }
+.LXXXII { width:6.5px; height:6.5px; top:38.99%; left:82.17%; }
+.LXXXIII { width:6.5px; height:6.5px; top:49.85%; left:18.84%; }
+.LXXXIV { width:6.5px; height:6.5px; top:16.85%; left:56.88%; }
+.LXXXV { width:6.5px; height:6.5px; top:56.11%; left:67.40%; }
+.LXXXVI { width:6.5px; height:6.5px; top:30.33%; left:23.39%; }
+.LXXXVII { width:6.5px; height:6.5px; top:27.10%; left:80.30%; }
+.LXXXVIII { width:6.5px; height:6.5px; top:59.01%; left:34.85%; }
+.LXXXIX { width:6.5px; height:6.5px; top:16.98%; left:39.75%; }
+.XC { width:6.5px; height:6.5px; top:47.13%; left:81.95%; }
+.XCI { width:6.5px; height:6.5px; top:40.62%; left:22.14%; }
+.XCII { width:6.5px; height:6.5px; top:17.51%; left:68.62%; }
+.XCIII { width:6.5px; height:6.5px; top:61.18%; left:56.33%; }
+.XCIV { width:6.5px; height:6.5px; top:23.23%; left:25.06%; }
+.XCV { width:6.5px; height:6.5px; top:34.21%; left:86.90%; }
+.XCVI { width:6.5px; height:6.5px; top:49.97%; left:29.79%; }
+.XCVII { width:6.5px; height:6.5px; top:13.41%; left:50.45%; }
+.XCVIII { width:6.5px; height:6.5px; top:55.40%; left:76.63%; }
+.XCIX { width:6.5px; height:6.5px; top:33.88%; left:17.66%; }
+.C { width:6.5px; height:6.5px; top:21.33%; left:80.25%; }
+.CI { width:6.5px; height:6.5px; top:55.32%; left:44.34%; }
+.CII { width:6.5px; height:6.5px; top:16.37%; left:31.34%; }
+.CIII { width:6.5px; height:6.5px; top:40.95%; left:76.94%; }
+.CIV { width:6.5px; height:6.5px; top:45.71%; left:20.30%; }
+.CV { width:6.5px; height:6.5px; top:12.61%; left:63.68%; }
+.CVI { width:6.5px; height:6.5px; top:54.72%; left:61.45%; }
+.CVII { width:6.5px; height:6.5px; top:25.74%; left:17.37%; }
+.CVIII { width:6.5px; height:6.5px; top:30.64%; left:77.54%; }
+.CIX { width:6.5px; height:6.5px; top:54.98%; left:32.57%; }
+.CX { width:6.5px; height:6.5px; top:11.01%; left:42.07%; }
+.CXI { width:6.5px; height:6.5px; top:48.09%; left:75.73%; }
+.CXII { width:6.5px; height:6.5px; top:38.78%; left:13.25%; }
+.CXIII { width:6.5px; height:6.5px; top:21.50%; left:69.30%; }
+.CXIV { width:6.5px; height:6.5px; top:58.58%; left:50.98%; }
+.CXV { width:6.5px; height:6.5px; top:17.33%; left:22.16%; }
+.CXVI { width:6.5px; height:6.5px; top:37.25%; left:82.44%; }
+.CXVII { width:6.5px; height:6.5px; top:51.48%; left:20.70%; }
+.CXVIII { width:6.5px; height:6.5px; top:16.55%; left:54.42%; }
+.CXIX { width:6.5px; height:6.5px; top:55.11%; left:69.89%; }
+.CXX { width:6.5px; height:6.5px; top:31.77%; left:22.76%; }
+.CXXI { width:6.5px; height:6.5px; top:25.50%; left:79.06%; }
+.CXXII { width:6.5px; height:6.5px; top:59.74%; left:37.82%; }
+.CXXIII { width:6.5px; height:6.5px; top:17.60%; left:37.37%; }
+.CXXIV { width:6.5px; height:6.5px; top:45.38%; left:83.25%; }
+.CXXV { width:6.5px; height:6.5px; top:42.10%; left:22.82%; }
+.CXXVI { width:6.5px; height:6.5px; top:16.57%; left:66.21%; }
+.CXXVII { width:6.5px; height:6.5px; top:60.75%; left:59.51%; }
+.CXXVIII { width:6.5px; height:6.5px; top:24.61%; left:23.52%; }
+.CXXIX { width:6.5px; height:6.5px; top:32.24%; left:86.54%; }
+.CXXX { width:6.5px; height:6.5px; top:51.01%; left:31.64%; }
+.CXXXI { width:6.5px; height:6.5px; top:13.47%; left:47.58%; }
+.CXXXII { width:6.5px; height:6.5px; top:53.90%; left:79.01%; }
+.CXXXIII { width:6.5px; height:6.5px; top:35.62%; left:17.51%; }
+.CXXXIV { width:6.5px; height:6.5px; top:19.75%; left:78.29%; }
+.CXXXV { width:6.5px; height:6.5px; top:55.55%; left:46.82%; }
+.CXXXVI { width:6.5px; height:6.5px; top:17.44%; left:28.91%; }
+.CXXXVII { width:6.5px; height:6.5px; top:39.49%; left:77.48%; }
+.CXXXVIII { width:6.5px; height:6.5px; top:47.27%; left:21.63%; }
+.CXXXIX { width:6.5px; height:6.5px; top:11.95%; left:60.66%; }
+.CXL { width:6.5px; height:6.5px; top:54.05%; left:63.79%; }
+.CXLI { width:6.5px; height:6.5px; top:27.52%; left:16.18%; }
+.CXLII { width:6.5px; height:6.5px; top:29.18%; left:76.77%; }
+.CXLIII { width:6.5px; height:6.5px; top:55.85%; left:35.04%; }
+.CXLIV { width:6.5px; height:6.5px; top:11.52%; left:38.92%; }
+.CXLV { width:6.5px; height:6.5px; top:46.67%; left:77.18%; }
+.CXLVI { width:6.5px; height:6.5px; top:40.74%; left:13.73%; }
+.CXLVII { width:6.5px; height:6.5px; top:20.51%; left:67.40%; }
+.CXLVIII { width:6.5px; height:6.5px; top:58.45%; left:53.85%; }
+.CXLIX { width:6.5px; height:6.5px; top:18.89%; left:19.88%; }
+.CL { width:6.5px; height:6.5px; top:35.50%; left:82.49%; }
+.CLI { width:6.5px; height:6.5px; top:52.99%; left:22.77%; }
+.CLII { width:6.5px; height:6.5px; top:16.38%; left:51.94%; }
+.CLIII { width:6.5px; height:6.5px; top:53.98%; left:72.25%; }
+.CLIV { width:6.5px; height:6.5px; top:33.25%; left:22.32%; }
+.CLV { width:6.5px; height:6.5px; top:23.98%; left:77.63%; }
+.CLVI { width:6.5px; height:6.5px; top:60.31%; left:40.88%; }
+.CLVII { width:6.5px; height:6.5px; top:18.34%; left:35.07%; }
+.CLVIII { width:6.5px; height:6.5px; top:43.56%; left:84.33%; }
+.CLIX { width:6.5px; height:6.5px; top:43.53%; left:23.69%; }
+.CLX { width:6.5px; height:6.5px; top:15.77%; left:63.68%; }
+.CLXI { width:6.5px; height:6.5px; top:60.16%; left:62.62%; }
+.CLXII { width:6.5px; height:6.5px; top:26.07%; left:22.16%; }
+.CLXIV { width:6.5px; height:6.5px; top:30.29%; left:85.94%; }
+.CLXV { width:6.5px; height:6.5px; top:51.94%; left:33.60%; }
+.CLXVI { width:6.5px; height:6.5px; top:13.67%; left:44.73%; }
+.CLXVII { width:6.5px; height:6.5px; top:52.29%; left:81.18%; }
+.CLXVIII { width:6.5px; height:6.5px; top:37.37%; left:17.57%; }
+.CLXIX { width:6.5px; height:6.5px; top:18.29%; left:76.13%; }
+.CLXX { width:6.5px; height:6.5px; top:55.66%; left:49.31%; }
+.CLXXI { width:6.5px; height:6.5px; top:18.63%; left:26.62%; }
+.CLXXII { width:6.5px; height:6.5px; top:38.00%; left:77.83%; }
+.CLXXIII { width:6.5px; height:6.5px; top:48.76%; left:23.16%; }
+.CLXXIV { width:6.5px; height:6.5px; top:11.46%; left:57.57%; }
+.CLXXV { width:6.5px; height:6.5px; top:53.24%; left:66.04%; }
+.CLXXVI { width:6.5px; height:6.5px; top:29.37%; left:15.22%; }
+.CLXXVII { width:6.5px; height:6.5px; top:27.77%; left:75.81%; }
+.CLXXVIII { width:6.5px; height:6.5px; top:56.58%; left:37.61%; }
+.CLXXIX { width:6.5px; height:6.5px; top:12.20%; left:35.85%; }
+.CLXXX { width:6.5px; height:6.5px; top:45.17%; left:78.44%; }
+.CLXXXI { width:6.5px; height:6.5px; top:42.67%; left:14.45%; }
+.CLXXXII { width:6.5px; height:6.5px; top:19.63%; left:65.37%; }
+.CLXXXIII { width:6.5px; height:6.5px; top:58.17%; left:56.69%; }
+.CLXXXIV { width:6.5px; height:6.5px; top:20.57%; left:17.81%; }
+.CLXXXV { width:6.5px; height:6.5px; top:33.76%; left:82.32%; }
+.CLXXXVI { width:6.5px; height:6.5px; top:54.40%; left:25.02%; }
+.CLXXXVII { width:6.5px; height:6.5px; top:16.34%; left:49.44%; }
+.CLXXXVIII { width:6.5px; height:6.5px; top:52.72%; left:74.46%; }
+.CLXXXIX { width:6.5px; height:6.5px; top:34.75%; left:22.07%; }
+.CXC { width:6.5px; height:6.5px; top:22.53%; left:76.01%; }
+.CXCI { width:6.5px; height:6.5px; top:60.72%; left:44.00%; }
+.CXCII { width:6.5px; height:6.5px; top:19.20%; left:32.88%; }
+.CXCIII { width:6.5px; height:6.5px; top:41.69%; left:85.18%; }
+.CXCIV { width:6.5px; height:6.5px; top:44.92%; left:24.74%; }
+.CXCV { width:6.5px; height:6.5px; top:15.10%; left:61.07%; }
+.CXCVI { width:6.5px; height:6.5px; top:59.40%; left:65.65%; }
+.CXCVII { width:6.5px; height:6.5px; top:27.60%; left:21.00%; }
+.CXCVIII { width:6.5px; height:6.5px; top:28.38%; left:85.09%; }
+.CXCIX { width:6.5px; height:6.5px; top:52.77%; left:35.68%; }
+.CC { width:6.5px; height:6.5px; top:14.03%; left:41.91%; }
+.CCI { width:6.5px; height:6.5px; top:50.56%; left:83.14%; }
+.CCII { width:6.5px; height:6.5px; top:39.10%; left:17.85%; }
+.CCIII { width:6.5px; height:6.5px; top:16.95%; left:73.79%; }
+.CCIV { width:6.5px; height:6.5px; top:55.63%; left:51.81%; }
+.CCV { width:6.5px; height:6.5px; top:19.95%; left:24.50%; }
+.CCVI { width:6.5px; height:6.5px; top:36.50%; left:77.99%; }
+.CCVII { width:6.5px; height:6.5px; top:50.15%; left:24.87%; }
+.CCVIII { width:6.5px; height:6.5px; top:11.14%; left:54.42%; }
+.CCIX { width:6.5px; height:6.5px; top:52.32%; left:68.17%; }
+.CCX { width:6.5px; height:6.5px; top:31.26%; left:14.49%; }
+.CCXI { width:6.5px; height:6.5px; top:26.41%; left:74.68%; }
+.CCXII { width:6.5px; height:6.5px; top:57.18%; left:40.27%; }
+.CCXIII { width:6.5px; height:6.5px; top:13.04%; left:32.88%; }
+.CCXIV { width:6.5px; height:6.5px; top:43.61%; left:79.51%; }
+.CCXV { width:6.5px; height:6.5px; top:44.56%; left:15.42%; }
+.CCXVI { width:6.5px; height:6.5px; top:18.86%; left:63.24%; }
+.CCXVII { width:6.5px; height:6.5px; top:57.73%; left:59.48%; }
+.CCXVIII { width:6.5px; height:6.5px; top:22.35%; left:15.96%; }
+.CCXIX { width:6.5px; height:6.5px; top:32.04%; left:81.92%; }
+.CCXX { width:6.5px; height:6.5px; top:55.68%; left:27.44%; }
+.CCXXI { width:6.5px; height:6.5px; top:16.44%; left:46.94%; }
+.CCXXII { width:6.5px; height:6.5px; top:51.35%; left:76.50%; }
+.CCXXIII { width:6.5px; height:6.5px; top:36.25%; left:22.00%; }
+.CCXXIV { width:6.5px; height:6.5px; top:21.18%; left:74.21%; }
+.CCXXV { width:6.5px; height:6.5px; top:60.96%; left:47.16%; }
+.CCXXVI { width:6.5px; height:6.5px; top:20.18%; left:30.80%; }
+.CCXXVII { width:6.5px; height:6.5px; top:39.79%; left:85.78%; }
+.CCXXVIII { width:6.5px; height:6.5px; top:46.24%; left:25.96%; }
+.CCXXIX { width:6.5px; height:6.5px; top:14.58%; left:58.38%; }
+.CCXXX { width:6.5px; height:6.5px; top:58.48%; left:68.57%; }
+.CCXXXI { width:6.5px; height:6.5px; top:29.19%; left:20.03%; }
+.CCXXXII { width:6.5px; height:6.5px; top:26.52%; left:84.00%; }
+.CCXXXIII { width:6.5px; height:6.5px; top:53.48%; left:37.86%; }
+.CCXXXIV { width:6.5px; height:6.5px; top:14.54%; left:39.15%; }
+.CCXXXV { width:6.5px; height:6.5px; top:48.73%; left:84.88%; }
+.CCXXXVI { width:6.5px; height:6.5px; top:40.82%; left:18.36%; }
+.CCXXXVII { width:6.5px; height:6.5px; top:15.74%; left:71.29%; }
+.CCXXXVIII { width:6.5px; height:6.5px; top:55.46%; left:54.30%; }
+.CCXXXIX { width:6.5px; height:6.5px; top:21.37%; left:22.54%; }
+.CCXL { width:6.5px; height:6.5px; top:35.00%; left:77.96%; }
+.CCXLI { width:6.5px; height:6.5px; top:51.45%; left:26.75%; }
+.CCXLII { width:6.5px; height:6.5px; top:10.99%; left:51.25%; }
+.CCXLIII { width:6.5px; height:6.5px; top:51.29%; left:70.19%; }
+.CCXLIV { width:6.5px; height:6.5px; top:33.18%; left:14.01%; }
+.CCXLV { width:6.5px; height:6.5px; top:25.12%; left:73.37%; }
+.CCXLVI { width:6.5px; height:6.5px; top:57.63%; left:42.99%; }
+.CCXLVII { width:6.5px; height:6.5px; top:14.04%; left:30.02%; }
+.CCXLVIII { width:6.5px; height:6.5px; top:42.00%; left:80.38%; }
+.CCXLIX { width:6.5px; height:6.5px; top:46.38%; left:16.63%; }
+.CCL { width:6.5px; height:6.5px; top:18.21%; left:61.02%; }
+.CCLI { width:6.5px; height:6.5px; top:57.15%; left:62.21%; }
+.CCLII { width:6.5px; height:6.5px; top:24.22%; left:14.34%; }
+.CCLIII { width:6.5px; height:6.5px; top:30.34%; left:81.31%; }
+.CCLIV { width:6.5px; height:6.5px; top:56.82%; left:30.02%; }
+.CCLV { width:6.5px; height:6.5px; top:16.67%; left:44.47%; }
+.CCLVI { width:6.5px; height:6.5px; top:49.88%; left:78.36%; }
+.CCLVII { width:6.5px; height:6.5px; top:37.75%; left:22.13%; }
+.CCLVIII { width:6.5px; height:6.5px; top:19.94%; left:72.24%; }
+.CCLIX { width:6.5px; height:6.5px; top:61.02%; left:50.34%; }
+.CCLX { width:6.5px; height:6.5px; top:21.26%; left:28.86%; }
+.CCLXI { width:6.5px; height:6.5px; top:37.85%; left:86.14%; }
+.CCLXII { width:6.5px; height:6.5px; top:47.50%; left:27.34%; }
+.CCLXIII { width:6.5px; height:6.5px; top:14.20%; left:55.63%; }
+.CCLXIV { width:6.5px; height:6.5px; top:57.40%; left:71.36%; }
+.CCLXV { width:6.5px; height:6.5px; top:30.82%; left:19.27%; }
+.CCLXVI { width:6.5px; height:6.5px; top:24.73%; left:82.68%; }
+.CCLXVII { width:6.5px; height:6.5px; top:54.07%; left:40.12%; }
+.CCLXVIII { width:6.5px; height:6.5px; top:15.20%; left:36.46%; }
+.CCLXX { width:6.5px; height:6.5px; top:46.81%; left:86.38%; }
+.CCLXXI { width:6.5px; height:6.5px; top:42.50%; left:19.08%; }
+.CCLXXII { width:6.5px; height:6.5px; top:14.66%; left:68.64%; }
+.CCLXXIII { width:6.5px; height:6.5px; top:55.17%; left:56.76%; }
+.CCLXXIV { width:6.5px; height:6.5px; top:22.90%; left:20.78%; }
+.CCLXXV { width:6.5px; height:6.5px; top:33.50%; left:77.74%; }
+.CCLXXVI { width:6.5px; height:6.5px; top:52.65%; left:28.80%; }
+.CCLXXVII { width:6.5px; height:6.5px; top:11.01%; left:48.07%; }
+.CCLXXVIII { width:6.5px; height:6.5px; top:50.16%; left:72.06%; }
+.CCLXXIX { width:6.5px; height:6.5px; top:35.12%; left:13.78%; }
+.CCLXXX { width:6.5px; height:6.5px; top:23.90%; left:71.91%; }
+.CCLXXXI { width:6.5px; height:6.5px; top:57.93%; left:45.76%; }
+.CCLXXXIII { width:6.5px; height:6.5px; top:15.19%; left:27.30%; }
+.CCLXXXIV { width:6.5px; height:6.5px; top:40.35%; left:81.04%; }
+.CCLXXXV { width:6.5px; height:6.5px; top:48.14%; left:18.06%; }
+.CCLXXXVI { width:6.5px; height:6.5px; top:17.68%; left:58.72%; }
+.CCLXXXVII { width:6.5px; height:6.5px; top:56.42%; left:64.85%; }
+.CCLXXXVIII { width:6.5px; height:6.5px; top:26.17%; left:12.97%; }
+.CCLXXXIX { width:6.5px; height:6.5px; top:28.68%; left:80.48%; }
+.CCXC { width:6.5px; height:6.5px; top:57.82%; left:32.73%; }
+.CCXCI { width:6.5px; height:6.5px; top:17.03%; left:42.03%; }
+.CCXCII { width:6.5px; height:6.5px; top:48.31%; left:80.03%; }
+.CCXCIII { width:6.5px; height:6.5px; top:39.24%; left:22.45%; }
+.CCXCIV { width:6.5px; height:6.5px; top:18.80%; left:70.13%; }
+.CCXCV { width:6.5px; height:6.5px; top:60.92%; left:53.52%; }
+.CCXCVI { width:6.5px; height:6.5px; top:22.45%; left:27.06%; }
+}
+
+
+/* =========================================================
+   SATURNO — ANILLO MÁS PEQUEÑO
+   Ajustado para que quede cerca del planeta, como en la
+   referencia del usuario.
+   ========================================================= */
+
+.planeta {
+    overflow: visible !important;
+    isolation: isolate;
+}
+
+.anillo {
+    position: absolute !important;
+
+    /* Antes: 178% x 43%.
+       Ahora queda mucho más cerca de Saturno. */
+    width: 30% !important;
+    height: 28% !important;
+
+    top: 37% !important;
+    left: 12% !important;
+
+    border: 0 !important;
+    border-radius: 50% !important;
+    background: transparent !important;
+    box-shadow: none !important;
+
+    transform: rotate(-13deg) !important;
+    z-index: 40 !important;
+    pointer-events: none;
+}
+
+/* Parte posterior */
+.anillo::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    border: clamp(30px, .5vw, 7px) solid rgba(222, 191, 126, .95);
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 5px rgba(255, 224, 160, .75),
+        0 0 10px rgba(214, 183, 122, .35);
+
+    clip-path: inset(0 0 50% 0);
+    z-index: 1;
+}
+
+/* Parte delantera */
+.anillo::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    border: clamp(30px, .5vw, 7px) solid rgba(231, 199, 133, 1);
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 5px rgba(255, 225, 165, .8),
+        0 0 11px rgba(214, 183, 122, .4);
+
+    clip-path: inset(50% 0 0 0);
+    z-index: 50;
+}
+
+/* ---------- TABLET ---------- */
+@media (min-width: 769px) and (max-width: 1100px) {
+    .anillo {
+        width: 50% !important;
+        height: 20% !important;
+        top: 29% !important;
+        left: 25% !important;
+    }
+
+    .anillo::before,
+    .anillo::after {
+        border-width: 20px;
+    }
+}
+
+/* ---------- CELULAR ---------- */
+@media (max-width: 768px) {
+    .anillo {
+        width: 65% !important;
+        height: 15% !important;
+        top: 28% !important;
+        left: 16% !important;
+    }
+
+    .anillo::before,
+    .anillo::after {
+        border-width: 15px;
+    }
+}
+
+/* ---------- CELULAR PEQUEÑO ---------- */
+@media (max-width: 480px) {
+    .anillo {
+        width: 136% !important;
+        height: 34% !important;
+        top: 38% !important;
+        left: 1% !important;
+    }
+}
+/* =========================================================
+   NAVEGACIÓN Y CUADRO INFORMATIVO RESPONSIVE
+   ========================================================= */
+.navegacion-planetas{
+    position:fixed;
+    top:18px;
+    left:22px;
+    display:flex;
+    gap:8px;
+    z-index:200;
+    flex-wrap:wrap;
+}
+.navegacion-planetas a{
+    color:#fff;
+    text-decoration:none;
+    font-size:13px;
+    padding:8px 12px;
+    border:1px solid rgba(255,255,255,.22);
+    border-radius:999px;
+    background:rgba(5,8,22,.62);
+    backdrop-filter:blur(8px);
+    transition:.2s ease;
+}
+.navegacion-planetas a:hover{
+    background:rgba(129,140,248,.22);
+    border-color:rgba(165,180,252,.65);
+}
+

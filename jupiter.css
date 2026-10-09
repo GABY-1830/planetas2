@@ -1,0 +1,2478 @@
+/* =========================================================
+   EXPLORA EL UNIVERSO — JÚPITER
+   Versión responsive: computadora, tablet y celular
+   Basado en la estructura y posiciones del CSS original.
+   ========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    font-family: Arial, sans-serif;
+    background: #050816;
+    color: white;
+}
+
+.universo {
+    width: 100%;
+    min-height: 100vh;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 20% 30%, rgba(99,102,241,.12), transparent 25%),
+        radial-gradient(circle at 75% 70%, rgba(56,189,248,.08), transparent 25%),
+        #050816;
+}
+
+/* Estrellas decorativas hechas con CSS */
+.universo::before,
+.universo::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+        radial-gradient(circle, rgba(255,255,255,.8) 1px, transparent 1.5px),
+        radial-gradient(circle, rgba(255,255,255,.45) 1px, transparent 1.5px);
+    background-size: 95px 95px, 155px 155px;
+    background-position: 15px 20px, 50px 70px;
+    opacity: .32;
+}
+
+/* ---------- TÍTULO ---------- */
+
+.titulo {
+    position: absolute;
+    top: 4%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(90%, 900px);
+    text-align: center;
+    z-index: 30;
+}
+
+.titulo h1 {
+    font-size: clamp(30px, 4vw, 52px);
+    line-height: 1.1;
+    text-shadow: 0 0 18px rgba(129,140,248,.8);
+}
+
+.titulo p {
+    margin-top: 10px;
+    color: #a5b4fc;
+    font-size: clamp(14px, 1.5vw, 18px);
+}
+
+/* ---------- PLANETA ---------- */
+
+.planeta {
+    width: clamp(220px, 31vw, 400px);
+    height: clamp(220px, 31vw, 400px);
+    position: absolute;
+    top: 50%;
+    left: 27%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    z-index: 10;
+
+    background:
+        linear-gradient(
+            180deg,
+            #d6d3d1 0%,
+            #a8a29e 18%,
+            #f5d0a9 30%,
+            #92400e 42%,
+            #e7c9a9 55%,
+            #78350f 70%,
+            #d6d3d1 85%
+        );
+
+    box-shadow:
+        0 0 40px #795b25,
+        0 0 100px #5e441d,
+        inset -30px -20px 40px #020617;
+
+    transition: transform .5s ease;
+    animation: girar 30s linear infinite;
+}
+
+.planeta:hover {
+    transform: translate(-50%, -50%) scale(1.06);
+}
+
+@keyframes girar {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+.universo > div[class]:not(.titulo):not(.planeta):not(.tarjeta):not([class$="-container"]):hover h2 {
+    opacity: 1;
+}
+
+@keyframes flotar {
+    0%, 100% {
+        margin-top: 0;
+    }
+    50% {
+        margin-top: -5px;
+    }
+}
+
+/* ---------- TODAS LAS LUNAS ---------- */
+
+[class$="-container"] {
+    display: none;
+}
+
+.universo > div[class]:not(.titulo):not(.planeta):not(.tarjeta):not([class$="-container"]) {
+    position: absolute;
+    border-radius: 50%;
+    background: #e5e7eb;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 20px white;
+    animation: flotar 4s ease-in-out infinite;
+    z-index: 15;
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        filter .25s ease;
+}
+
+.universo > div[class]:not(.titulo):not(.planeta):not(.tarjeta):not([class$="-container"]):hover {
+    transform: translate(-50%, -50%) scale(1.8);
+    box-shadow:
+        0 0 15px white,
+        0 0 35px rgba(255,255,255,.95);
+    filter: brightness(1.15);
+    z-index: 100;
+    cursor: pointer;
+}
+
+.universo > div[class]:not(.titulo):not(.planeta):not(.tarjeta):not([class$="-container"]) h2 {
+    position: absolute;
+    top: 22px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: max-content;
+    max-width: 150px;
+    text-align: center;
+    color: white;
+    font-size: 9px;
+    line-height: 1.1;
+    font-weight: bold;
+    text-shadow: 0 1px 5px #000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .2s ease;
+}
+
+.universo > div[class]:not(.titulo):not(.planeta):not(.tarjeta):not([class$="-container"]):hover h2 {
+    opacity: 1;
+}
+
+@keyframes flotar {
+    0%, 100% {
+        margin-top: 0;
+    }
+    50% {
+        margin-top: -5px;
+    }
+}
+
+/* ---------- POSICIONES ORIGINALES DE LAS LUNAS ---------- */
+
+.europa {
+    width: 30px;
+    height: 30px;
+    top: 45%;
+    left: 9%;
+    
+}
+.europa h2{
+    margin-top: 12px;
+}
+.ganymede {
+    width: 80px;
+    height: 80px;
+    top: 54%;
+    left: 5%;
+}
+.ganymede h2{
+    margin-top: 65px;
+}
+.io {
+    width: 45px;
+    height: 45px;
+    top: 58%;
+    left: 11%;
+}
+.io h2{
+    margin-top: 26px;
+}
+.callisto {
+    width: 60px;
+    height: 60px;
+    top: 42%;
+    left: 3%;
+}
+.callisto h2{
+    margin-top: 45px;
+}
+.amalthea {
+    width: 15px;
+    height: 15px;
+    top: 66%;
+    left: 14%;
+}
+.himalia {
+    width: 15px;
+    height: 15px;
+    top: 34%;
+    left: 37%;
+}
+.elara {
+    width: 15px;
+    height: 15px;
+    top: 35%;
+    left: 13%;
+}
+.pasiphae {
+    width: 15px;
+    height: 15px;
+    top: 30%;
+    left: 11%;
+}
+.sinope {
+    width: 15px;
+    height: 15px;
+    top: 20%;
+    left: 15%;
+}
+.lysithea {
+    width: 15px;
+    height: 15px;
+    top: 50%;
+    left: 11%;
+}
+.carme {
+    width: 15px;
+    height: 15px;
+    top: 86%;
+    left: 15%;
+}
+.ananke {
+    width: 15px;
+    height: 15px;
+    top: 90%;
+    left: 11%;
+}
+.leda {
+    width: 15px;
+    height: 15px;
+    top: 66%;
+    left: 50%;
+}
+.thebe {
+    width: 15px;
+    height: 15px;
+    top: 68%;
+    left: 41%;
+}
+.adrastea {
+    width: 15px;
+    height: 15px;
+    top: 70%;
+    left: 45%;
+}
+.metis {
+    width: 15px;
+    height: 15px;
+    top: 70%;
+    left: 35%;
+}
+.callirrhoe {
+    width: 15px;
+    height: 15px;
+    top: 78%;
+    left: 25%;
+}
+.themisto {
+    width: 15px;
+    height: 15px;
+    top: 85%;
+    left: 35%;
+}
+.megaclite {
+    width: 15px;
+    height: 15px;
+    top: 68%;
+    left: 7%;
+}
+.taygete {
+    width: 15px;
+    height: 15px;
+    top: 73%;
+    left: 8%;
+}
+.chaldene {
+    width: 15px;
+    height: 15px;
+    top: 75%;
+    left: 20%;
+}
+.harpalyke {
+    width: 15px;
+    height: 15px;
+    top: 95%;
+    left: 5%;
+}
+.kalyke {
+    width: 15px;
+    height: 15px;
+    top: 94%;
+    left: 9.5%;
+}
+.iocaste {
+    width: 15px;
+    height: 15px;
+    top: 91%;
+    left: 32%;
+}
+.erinome {
+    width: 15px;
+    height: 15px;
+    top: 94%;
+    left: 36%;
+}
+.praxidike {
+    width: 15px;
+    height: 15px;
+    top: 93%;
+    left: 44%;
+}
+.autonoe {
+    width: 15px;
+    height: 15px;
+    top: 95%;
+    left: 50%;
+}
+.thyone {
+    width: 15px;
+    height: 15px;
+    top: 95%;
+    left: 47%;
+}
+.hermippe {
+    width: 15px;
+    height: 15px;
+    top: 90%;
+    left: 49%;
+}
+.aitne {
+    width: 15px;
+    height: 15px;
+    top: 50%;
+    left: 49%;
+}
+.eurydome {
+    width: 15px;
+    height: 15px;
+    top: 6%;
+    left: 20%;
+}
+.euanthe {
+    width: 15px;
+    height: 15px;
+    top: 3%;
+    left: 18%;
+}
+.euporie {
+    width: 15px;
+    height: 15px;
+    top: 20%;
+    left: 39%;
+}
+.orthosie {
+    width: 15px;
+    height: 15px;
+    top: 14%;
+    left: 37%;
+}
+.sponde {
+    width: 15px;
+    height: 15px;
+    top: 15%;
+    left: 34%;
+}
+.kale {
+    width: 15px;
+    height: 15px;
+    top: 3%;
+    left: 13%;
+}
+.pasithee {
+    width: 15px;
+    height: 15px;
+    top: 16%;
+    left: 30%;
+}
+.hegemone {
+    width: 15px;
+    height: 15px;
+    top: 6%;
+    left: 3%;
+}
+.mneme {
+    width: 15px;
+    height: 15px;
+    top: 5%;
+    left: 7%;
+}
+.aoede {
+    width: 15px;
+    height: 15px;
+    top: 19%;
+    left: 6%;
+}
+.thelxinoe {
+    width: 15px;
+    height: 15px;
+    top: 3%;
+    left: 9%;
+}
+.arche {
+    width: 15px;
+    height: 15px;
+    top: 12%;
+    left: 8%;
+}
+.kallichore {
+    width: 15px;
+    height: 15px;
+    top: 12%;
+    left: 3%;
+}
+.helike {
+    width: 15px;
+    height: 15px;
+    top: 9%;
+    left: 1%;
+}
+.carpo {
+    width: 15px;
+    height: 15px;
+    top: 10%;
+    left: 5%;
+}
+.eukelade {
+    width: 15px;
+    height: 15px;
+    top: 64%;
+    left: 4%;
+}
+.cyllene {
+    width: 15px;
+    height: 15px;
+    top: 70%;
+    left: 3%;
+}
+.kore {
+    width: 15px;
+    height: 15px;
+    top: 66%;
+    left: 2%;
+}
+.herse {
+    width: 15px;
+    height: 15px;
+    top: 74%;
+    left: 2%;
+}
+.LI {
+    width: 15px;
+    height: 15px;
+    top: 95%;
+    left: 15%;
+}
+.LII {
+    width: 15px;
+    height: 15px;
+    top: 94%;
+    left: 20%;
+}
+.dia {
+    width: 15px;
+    height: 15px;
+    top: 91%;
+    left: 15%;
+}
+.LIV {
+    width: 15px;
+    height: 15px;
+    top: 10%;
+    left: 25%;
+}
+.LV {
+    width: 15px;
+    height: 15px;
+    top: 10%;
+    left: 15%;
+}
+.LVI {
+    width: 15px;
+    height: 15px;
+    top: 20%;
+    left: 30%;
+}
+.eirene {
+    width: 15px;
+    height: 15px;
+    top: 15%;
+    left: 40%;
+}
+.philophrosyne {
+    width: 15px;
+    height: 15px;
+    top: 55%;
+    left: 45%;
+}
+.LIX {
+    width: 15px;
+    height: 15px;
+    top: 77%;
+    left: 42%;
+}
+.eupheme {
+    width: 15px;
+    height: 15px;
+    top: 79%;
+    left: 49%;
+}
+.LXI {
+    width: 15px;
+    height: 15px;
+    top: 35%;
+    left: 49%;
+}
+.valetudo {
+    width: 15px;
+    height: 15px;
+    top: 25%;
+    left: 46%;
+}
+.LXIII {
+    width: 15px;
+    height: 15px;
+    top: 38%;
+    left: 44%;
+}
+.LXIV {
+    width: 15px;
+    height: 15px;
+    top: 20%;
+    left: 34%;
+}
+.pandia {
+    width: 15px;
+    height: 15px;
+    top: 28%;
+    left: 40%;
+}
+.LXVI {
+    width: 15px;
+    height: 15px;
+    top: 50%;
+    left: 40%;
+}
+.LXVII {
+    width: 15px;
+    height: 15px;
+    top: 85%;
+    left: 45%;
+}
+.LXVIII {
+    width: 15px;
+    height: 15px;
+    top: 85%;
+    left: 30%;
+}
+.LXIX {
+    width: 15px;
+    height: 15px;
+    top: 86%;
+    left: 40%;
+}
+.LXX {
+    width: 15px;
+    height: 15px;
+    top: 80%;
+    left: 11%;
+}
+.ersa {
+    width: 15px;
+    height: 15px;
+    top: 81%;
+    left: 5%;
+}
+.LXXII {
+    width: 15px;
+    height: 15px;
+    top: 88%;
+    left: 7%;
+}
+.LXXIII {
+    width: 15px;
+    height: 15px;
+    top: 88%;
+    left: 25%;
+}
+.LXXIV {
+    width: 15px;
+    height: 15px;
+    top: 95%;
+    left: 27%;
+}
+.LXXV {
+    width: 15px;
+    height: 15px;
+    top: 85%;
+    left: 20%;
+}
+.LXXVI {
+    width: 15px;
+    height: 15px;
+    top: 80%;
+    left: 17%;
+}
+.LXXVII {
+    width: 15px;
+    height: 15px;
+    top: 87%;
+    left: 3%;
+}
+.LXXVIII {
+    width: 15px;
+    height: 15px;
+    top: 76%;
+    left: 38%;
+}
+.LXXIX {
+    width: 15px;
+    height: 15px;
+    top: 76%;
+    left: 32%;
+}
+.LXXX {
+    width: 15px;
+    height: 15px;
+    top: 60%;
+    left: 38%;
+}
+.LXXXI {
+    width: 15px;
+    height: 15px;
+    top: 62%;
+    left: 45%;
+}
+.LXXXII {
+    width: 15px;
+    height: 15px;
+    top: 76%;
+    left: 46%;
+}
+.LXXXIII {
+    width: 15px;
+    height: 15px;
+    top: 70%;
+    left: 11%;
+}
+.LXXXIV {
+    width: 15px;
+    height: 15px;
+    top: 94%;
+    left: 2%;
+}
+.LXXXV {
+    width: 15px;
+    height: 15px;
+    top: 80%;
+    left: 2%;
+}
+.LXXXVI {
+    width: 15px;
+    height: 15px;
+    top: 75%;
+    left: 15%;
+}
+.LXXXVII {
+    width: 15px;
+    height: 15px;
+    top: 20%;
+    left: 2%;
+}
+.LXXXVIII {
+    width: 15px;
+    height: 15px;
+    top: 24%;
+    left: 5%;
+}
+.LXXXIX {
+    width: 15px;
+    height: 15px;
+    top: 22%;
+    left: 11%;
+}
+.XC {
+    width: 15px;
+    height: 15px;
+    top: 20%;
+    left: 25%;
+}
+.XCI {
+    width: 15px;
+    height: 15px;
+    top: 16%;
+    left: 20%;
+}
+.XCII {
+    width: 15px;
+    height: 15px;
+    top: 23%;
+    left: 18%;
+}
+.XCIII {
+    width: 15px;
+    height: 15px;
+    top: 30%;
+    left: 3%;
+}
+.XCIV {
+    width: 15px;
+    height: 15px;
+    top: 35%;
+    left: 7%;
+}
+.XCV {
+    width: 15px;
+    height: 15px;
+    top: 25%;
+    left: 8%;
+}
+.XCVI {
+    width: 15px;
+    height: 15px;
+    top: 10%;
+    left: 11%;
+}
+.isonoe {
+    width: 15px;
+    height: 15px;
+    top: 46%;
+    left: 44%;
+}/* =====================================================
+       TARJETA
+       ===================================================== */
+    @media (max-width: 768px) {
+
+    .tarjeta {
+        position: absolute !important;
+
+        left: 50% !important;
+        right: auto !important;
+
+        /* Mantener el cuadro GRANDE */
+        width: 92% !important;
+        height: 300px !important;
+
+        /* Bajarlo */
+        top: auto !important;
+        bottom: -300px !important;
+
+        transform: translateX(-50%) !important;
+
+        padding: 15px 18px !important;
+
+        border-radius: 17px !important;
+
+        overflow: hidden;
+    }
+
+    }
+    .tarjeta {
+        top: auto;
+        right: auto;
+        bottom: 3%;
+        left: 50%;
+
+        transform: translateX(-50%);
+
+        width: 92%;
+        padding: 15px 18px;
+
+        border-radius: 16px;
+    }
+
+    .tarjeta h3 {
+        margin-bottom: 5px;
+        font-size: 21px;
+    }
+
+    .tarjeta p {
+        font-size: 13px;
+        line-height: 1.4;
+    }
+
+/* =========================================================
+   CELULAR PEQUEÑO
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+    .universo {
+        min-height: 600px;
+    }
+
+    .planeta {
+        width: 50vw;
+        height: 50vw;
+        min-width: 175px;
+        min-height: 175px;
+        top: 39%;
+    }
+
+    .universo > div[class]:not(.titulo):not(.planeta):not(.tarjeta):not([class$="-container"]) {
+        transform: translate(-50%, -50%) scale(.62);
+    }
+
+    .universo > div[class]:not(.titulo):not(.planeta):not(.tarjeta):not([class$="-container"]):hover,
+    .universo > div[class]:not(.titulo):not(.planeta):not(.tarjeta):not([class$="-container"]):active {
+        transform: translate(-50%, -50%) scale(1.25);
+    }
+
+    .tarjeta {
+        bottom: 2%;
+        width: 94%;
+        padding: 12px 15px;
+    }
+
+    .tarjeta h3 {
+        font-size: 19px;
+    }
+
+    .tarjeta p {
+        font-size: 12px;
+        line-height: 1.35;
+    }
+
+    .universo > div[class]:not(.titulo):not(.planeta):not(.tarjeta):not([class$="-container"]) h2 {
+        font-size: 7px;
+        top: 16px;
+    }
+}
+
+
+/* En pantallas táctiles el efecto se activa al tocar */
+@media (hover: none) and (pointer: coarse) {
+    .universo > div[class]:not(.titulo):not(.planeta):not(.tarjeta):not([class$="-container"]):active {
+        box-shadow:
+            0 0 15px white,
+            0 0 32px rgba(255,255,255,.95);
+    }
+}
+
+
+
+/* =========================================================
+   TABLET
+   LUNAS ESPARCIDAS POR TODA LA PANTALLA
+   ========================================================= */
+
+@media (min-width: 769px) and (max-width: 1100px) {
+
+    .universo {
+        width: 100%;
+        height: 100vh;
+        min-height: 800px;
+        overflow: hidden;
+    }
+
+    /* ---------- TÍTULO ---------- */
+
+    .titulo {
+        top: 3%;
+        width: 90%;
+    }
+
+    .titulo h1 {
+        font-size: clamp(65px, 5vw, 50px);
+    }
+
+    .titulo p {
+        font-size: 17px;
+        margin-top: 8px;
+    }
+
+
+    /* ---------- JÚPITER ---------- */
+
+    .planeta {
+        width: 31vw;
+        height: 31vw;
+
+        min-width: 230px;
+        min-height: 230px;
+
+        max-width: 330px;
+        max-height: 330px;
+
+        top: 50%;
+        left: 50%;
+    }
+
+
+    /* =====================================================
+       LUNAS GRANDES
+       ===================================================== */
+
+    .europa {
+        top: 43%;
+        left: 12%;
+    }
+
+    .ganymede {
+        top: 54%;
+        left: 14%;
+    }
+
+    .io {
+        top: 65%;
+        left: 10%;
+    }
+
+    .callisto {
+        top: 35%;
+        left: 8%;
+    }
+
+
+    /* =====================================================
+       PARTE SUPERIOR
+       ===================================================== */
+
+    .amalthea {
+        top: 25%;
+        left: 10%;
+    }
+
+    .himalia {
+        top: 19%;
+        left: 27%;
+    }
+
+    .elara {
+        top: 29%;
+        left: 22%;
+    }
+
+    .pasiphae {
+        top: 23%;
+        left: 39%;
+    }
+
+    .sinope {
+        top: 14%;
+        left: 16%;
+    }
+
+    .lysithea {
+        top: 32%;
+        left: 33%;
+    }
+
+    .leda {
+        top: 24%;
+        left: 56%;
+    }
+
+    .thebe {
+        top: 29%;
+        left: 67%;
+    }
+
+    .adrastea {
+        top: 18%;
+        left: 73%;
+    }
+
+    .metis {
+        top: 32%;
+        left: 81%;
+    }
+
+    .callirrhoe {
+        top: 15%;
+        left: 53%;
+    }
+
+    .themisto {
+        top: 22%;
+        left: 89%;
+    }
+
+
+    /* =====================================================
+       LADO DERECHO
+       ===================================================== */
+
+    .megaclite {
+        top: 36%;
+        left: 94%;
+    }
+
+    .taygete {
+        top: 44%;
+        left: 91%;
+    }
+
+    .chaldene {
+        top: 53%;
+        left: 96%;
+    }
+
+    .harpalyke {
+        top: 63%;
+        left: 92%;
+    }
+
+    .kalyke {
+        top: 72%;
+        left: 96%;
+    }
+
+    .iocaste {
+        top: 81%;
+        left: 89%;
+    }
+
+    .erinome {
+        top: 88%;
+        left: 94%;
+    }
+
+
+    /* =====================================================
+       ALREDEDOR DE JÚPITER
+       ===================================================== */
+
+    .autonoe {
+        top: 38%;
+        left: 36%;
+    }
+
+    .thyone {
+        top: 49%;
+        left: 29%;
+    }
+
+    .hermippe {
+        top: 58%;
+        left: 29%;
+    }
+
+    .aitne {
+        top: 68%;
+        left: 36%;
+    }
+
+    .eurydome {
+        top: 39%;
+        left: 69%;
+    }
+
+    .euanthe {
+        top: 48%;
+        left: 75%;
+    }
+
+    .euporie {
+        top: 59%;
+        left: 77%;
+    }
+
+    .orthosie {
+        top: 68%;
+        left: 71%;
+    }
+
+    .sponde {
+        top: 75%;
+        left: 63%;
+    }
+
+
+    /* =====================================================
+       PARTE INFERIOR
+       ===================================================== */
+
+    .carme {
+        top: 78%;
+        left: 14%;
+    }
+
+    .ananke {
+        top: 86%;
+        left: 9%;
+    }
+
+    .eukelade {
+        top: 70%;
+        left: 7%;
+    }
+
+    .cyllene {
+        top: 80%;
+        left: 6%;
+    }
+
+    .kore {
+        top: 89%;
+        left: 19%;
+    }
+
+    .herse {
+        top: 94%;
+        left: 33%;
+    }
+
+    .LI {
+        top: 92%;
+        left: 47%;
+    }
+
+    .LII {
+        top: 87%;
+        left: 56%;
+    }
+
+    .dia {
+        top: 83%;
+        left: 67%;
+    }
+
+    .LIV {
+        top: 92%;
+        left: 71%;
+    }
+
+    .LV {
+        top: 96%;
+        left: 58%;
+    }
+
+    .LVI {
+        top: 85%;
+        left: 79%;
+    }
+
+
+    /* =====================================================
+       LUNAS ADICIONALES
+       ===================================================== */
+
+    .kale {
+        top: 18%;
+        left: 33%;
+    }
+
+    .pasithee {
+        top: 19%;
+        left: 64%;
+    }
+
+    .hegemone {
+        top: 16%;
+        left: 82%;
+    }
+
+    .mneme {
+        top: 17%;
+        left: 95%;
+    }
+
+    .aoede {
+        top: 28%;
+        left: 56%;
+    }
+
+    .thelxinoe {
+        top: 16%;
+        left: 47%;
+    }
+
+    .arche {
+        top: 15%;
+        left: 72%;
+    }
+
+    .kallichore {
+        top: 20%;
+        left: 93%;
+    }
+
+    .helike {
+        top: 15%;
+        left: 6%;
+    }
+
+    .carpo {
+        top: 33%;
+        left: 97%;
+    }
+
+
+    /* =====================================================
+       PARTE INFERIOR EXTRA
+       ===================================================== */
+
+    .eirene {
+        top: 77%;
+        left: 84%;
+    }
+
+    .philophrosyne {
+        top: 73%;
+        left: 48%;
+    }
+
+    .LIX {
+        top: 81%;
+        left: 39%;
+    }
+
+    .eupheme {
+        top: 90%;
+        left: 87%;
+    }
+
+    .LXI {
+        top: 37%;
+        left: 52%;
+    }
+
+    .valetudo {
+        top: 28%;
+        left: 46%;
+    }
+
+    .LXIII {
+        top: 42%;
+        left: 62%;
+    }
+
+    .LXIV {
+        top: 35%;
+        left: 84%;
+    }
+
+    .pandia {
+        top: 31%;
+        left: 59%;
+    }
+
+    .LXVI {
+        top: 53%;
+        left: 83%;
+    }
+
+    .LXVII {
+        top: 64%;
+        left: 61%;
+    }
+
+    .LXVIII {
+        top: 69%;
+        left: 47%;
+    }
+
+    .LXIX {
+        top: 74%;
+        left: 57%;
+    }
+
+    .LXX {
+        top: 75%;
+        left: 23%;
+    }
+
+    .ersa {
+        top: 83%;
+        left: 27%;
+    }
+
+    .LXXII {
+        top: 91%;
+        left: 23%;
+    }
+
+    .LXXIII {
+        top: 95%;
+        left: 38%;
+    }
+
+    .LXXIV {
+        top: 97%;
+        left: 73%;
+    }
+
+    .LXXV {
+        top: 85%;
+        left: 34%;
+    }
+
+    .LXXVI {
+        top: 76%;
+        left: 18%;
+    }
+
+    .LXXVII {
+        top: 73%;
+        left: 5%;
+    }
+
+    .LXXVIII {
+        top: 65%;
+        left: 74%;
+    }
+
+    .LXXIX {
+        top: 60%;
+        left: 84%;
+    }
+
+    .LXXX {
+        top: 46%;
+        left: 87%;
+    }
+
+    .LXXXI {
+        top: 57%;
+        left: 92%;
+    }
+
+    .LXXXII {
+        top: 70%;
+        left: 91%;
+    }
+
+    .LXXXIII {
+        top: 59%;
+        left: 15%;
+    }
+
+    .LXXXIV {
+        top: 90%;
+        left: 5%;
+    }
+
+    .LXXXV {
+        top: 82%;
+        left: 8%;
+    }
+
+    .LXXXVI {
+        top: 69%;
+        left: 25%;
+    }
+
+    .LXXXVII {
+        top: 25%;
+        left: 3%;
+    }
+
+    .LXXXVIII {
+        top: 38%;
+        left: 3%;
+    }
+
+    .LXXXIX {
+        top: 47%;
+        left: 18%;
+    }
+
+    .XC {
+        top: 27%;
+        left: 47%;
+    }
+
+    .XCI {
+        top: 17%;
+        left: 40%;
+    }
+
+    .XCII {
+        top: 26%;
+        left: 29%;
+    }
+
+    .XCIII {
+        top: 34%;
+        left: 12%;
+    }
+
+    .XCIV {
+        top: 41%;
+        left: 22%;
+    }
+
+    .XCV {
+        top: 49%;
+        left: 10%;
+    }
+
+    .XCVI {
+        top: 30%;
+        left: 74%;
+    }
+
+    .isonoe {
+        top: 52%;
+        left: 69%;
+    }
+
+
+    /* =====================================================
+       TAMAÑO DE LAS LUNAS
+       ===================================================== */
+
+    .universo > div[class]:not(.titulo):not(.planeta):not(.tarjeta):not([class$="-container"]) {
+        transform:
+            translate(-50%, -50%)
+            scale(.85);
+    }
+
+
+    /* =====================================================
+       TARJETA INFERIOR
+       ===================================================== */
+    @media (min-width: 769px) and (max-width: 1100px) {
+
+    .tarjeta {
+        position: absolute !important;
+
+        left: 50% !important;
+        right: auto !important;
+
+        /*
+         * Mantenemos el cuadro GRANDE
+         */
+        width: 88% !important;
+        height: 400px !important;
+
+        /*
+         * Lo bajamos desde la parte superior
+         */
+        top: auto !important;
+        bottom: -170px !important;
+
+        transform: translateX(-50%) !important;
+
+        padding: 18px 22px !important;
+
+        border-radius: 18px !important;
+    }
+}
+    .tarjeta {
+    bottom: -45px;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+
+    width: 88%;
+    padding: 18px 22px;
+    border-radius: 18px;
+    }
+    .tarjeta h3 {
+        font-size: 24px;
+        margin-bottom: 6px;
+    }
+
+    .tarjeta p {
+        font-size: 15px;
+    }
+}
+@media (max-width: 768px) {
+
+    .universo {
+        width: 100%;
+        height: 100vh;
+        min-height: 650px;
+        overflow: hidden;
+    }
+
+    /* ---------- TÍTULO ---------- */
+
+    .titulo {
+        top: 3%;
+        width: 94%;
+    }
+
+    .titulo h1 {
+        font-size: clamp(55px, 8vw, 36px);
+    }
+
+    .titulo p {
+        font-size: 15px;
+        margin-top: 6px;
+    }
+
+
+    /* ---------- PLANETA ---------- */
+
+    .planeta {
+        width: 58vw;
+        height: 58vw;
+
+        min-width: 190px;
+        min-height: 190px;
+
+        max-width: 250px;
+        max-height: 250px;
+
+        top: 50%;
+        left: 50%;
+    }
+
+
+    /* =====================================================
+       TODAS LAS LUNAS
+       ===================================================== */
+
+    .universo > div[class]:not(.titulo):not(.planeta):not(.tarjeta):not([class$="-container"]) {
+
+        transform: translate(-50%, -50%) scale(.70);
+
+        z-index: 15;
+
+        /* IMPORTANTE:
+           No las agrupamos alrededor del planeta */
+    }
+
+
+    /* =====================================================
+       LUNAS GRANDES
+       ===================================================== */
+
+    .europa {
+        top: 43%;
+        left: 8%;
+
+    }
+
+    .ganymede {
+        top: 53%;
+        left: 10%;
+    }
+
+    .io {
+        top: 63%;
+        left: 7%;
+    }
+
+    .callisto {
+        top: 34%;
+        left: 5%;
+    }
+
+
+    /* =====================================================
+       PARTE SUPERIOR IZQUIERDA
+       ===================================================== */
+
+    .amalthea {
+        top: 25%;
+        left: 8%;
+    }
+
+    .himalia {
+        top: 20%;
+        left: 25%;
+    }
+
+    .elara {
+        top: 29%;
+        left: 20%;
+    }
+
+    .pasiphae {
+        top: 22%;
+        left: 38%;
+    }
+
+    .sinope {
+        top: 17%;
+        left: 15%;
+    }
+
+    .lysithea {
+        top: 31%;
+        left: 32%;
+    }
+
+    .carme {
+        top: 77%;
+        left: 12%;
+    }
+
+    .ananke {
+        top: 85%;
+        left: 7%;
+    }
+
+
+    /* =====================================================
+       PARTE SUPERIOR CENTRAL
+       ===================================================== */
+
+    .leda {
+        top: 24%;
+        left: 55%;
+    }
+
+    .thebe {
+        top: 28%;
+        left: 67%;
+    }
+
+    .adrastea {
+        top: 18%;
+        left: 72%;
+    }
+
+    .metis {
+        top: 31%;
+        left: 78%;
+    }
+
+    .callirrhoe {
+        top: 16%;
+        left: 52%;
+    }
+
+    .themisto {
+        top: 22%;
+        left: 87%;
+    }
+
+
+    /* =====================================================
+       LADO DERECHO
+       ===================================================== */
+
+    .megaclite {
+        top: 35%;
+        left: 94%;
+    }
+
+    .taygete {
+        top: 43%;
+        left: 88%;
+    }
+
+    .chaldene {
+        top: 52%;
+        left: 96%;
+    }
+
+    .harpalyke {
+        top: 61%;
+        left: 91%;
+    }
+
+    .kalyke {
+        top: 70%;
+        left: 97%;
+    }
+
+    .iocaste {
+        top: 78%;
+        left: 88%;
+    }
+
+    .erinome {
+        top: 86%;
+        left: 94%;
+    }
+
+    .praxidike {
+        top: 92%;
+        left: 80%;
+    }
+
+
+    /* =====================================================
+       PARTE CENTRAL ALREDEDOR DE JÚPITER
+       ===================================================== */
+
+    .autonoe {
+        top: 38%;
+        left: 37%;
+    }
+
+    .thyone {
+        top: 48%;
+        left: 30%;
+    }
+
+    .hermippe {
+        top: 57%;
+        left: 29%;
+    }
+
+    .aitne {
+        top: 67%;
+        left: 35%;
+    }
+
+    .eurydome {
+        top: 38%;
+        left: 69%;
+    }
+
+    .euanthe {
+        top: 47%;
+        left: 74%;
+    }
+
+    .euporie {
+        top: 58%;
+        left: 76%;
+    }
+
+    .orthosie {
+        top: 67%;
+        left: 70%;
+    }
+
+    .sponde {
+        top: 74%;
+        left: 63%;
+    }
+
+
+    /* =====================================================
+       LUNAS EXTRA SUPERIORES
+       ===================================================== */
+
+    .kale {
+        top: 14%;
+        left: 32%;
+    }
+
+    .pasithee {
+        top: 17%;
+        left: 63%;
+    }
+
+    .hegemone {
+        top: 18%;
+        left: 82%;
+    }
+
+    .mneme {
+        top: 17%;
+        left: 95%;
+    }
+
+    .aoede {
+        top: 27%;
+        left: 55%;
+    }
+
+    .thelxinoe {
+        top: 14%;
+        left: 47%;
+    }
+
+    .arche {
+        top: 15%;
+        left: 72%;
+    }
+
+    .kallichore {
+        top: 20%;
+        left: 92%;
+    }
+
+    .helike {
+        top: 15%;
+        left: 9%;
+    }
+
+    .carpo {
+        top: 32%;
+        left: 97%;
+    }
+
+
+    /* =====================================================
+       LUNAS EXTRA INFERIORES
+       ===================================================== */
+
+    .eukelade {
+        top: 69%;
+        left: 5%;
+    }
+
+    .cyllene {
+        top: 78%;
+        left: 4%;
+    }
+
+    .kore {
+        top: 88%;
+        left: 18%;
+    }
+
+    .herse {
+        top: 94%;
+        left: 32%;
+    }
+
+    .LI {
+        top: 93%;
+        left: 45%;
+    }
+
+    .LII {
+        top: 87%;
+        left: 55%;
+    }
+
+    .dia {
+        top: 82%;
+        left: 66%;
+    }
+
+    .LIV {
+        top: 91%;
+        left: 69%;
+    }
+
+    .LV {
+        top: 96%;
+        left: 58%;
+    }
+
+    .LVI {
+        top: 84%;
+        left: 78%;
+    }
+
+    .eirene {
+        top: 76%;
+        left: 83%;
+    }
+
+    .philophrosyne {
+        top: 72%;
+        left: 48%;
+    }
+
+    .LIX {
+        top: 80%;
+        left: 39%;
+    }
+
+    .eupheme {
+        top: 89%;
+        left: 87%;
+    }
+
+
+    /* =====================================================
+       LUNAS CENTRALES SUPERIORES
+       ===================================================== */
+
+    .LXI {
+        top: 36%;
+        left: 52%;
+    }
+
+    .valetudo {
+        top: 27%;
+        left: 46%;
+    }
+
+    .LXIII {
+        top: 41%;
+        left: 62%;
+    }
+
+    .LXIV {
+        top: 34%;
+        left: 83%;
+    }
+
+    .pandia {
+        top: 30%;
+        left: 59%;
+    }
+
+    .LXVI {
+        top: 52%;
+        left: 82%;
+    }
+
+    .LXVII {
+        top: 63%;
+        left: 61%;
+    }
+
+    .LXVIII {
+        top: 68%;
+        left: 47%;
+    }
+
+    .LXIX {
+        top: 73%;
+        left: 56%;
+    }
+
+    .LXX {
+        top: 74%;
+        left: 23%;
+    }
+
+    .ersa {
+        top: 82%;
+        left: 27%;
+    }
+
+    .LXXII {
+        top: 91%;
+        left: 22%;
+    }
+
+    .LXXIII {
+        top: 95%;
+        left: 38%;
+    }
+
+    .LXXIV {
+        top: 97%;
+        left: 72%;
+    }
+
+    .LXXV {
+        top: 84%;
+        left: 34%;
+    }
+
+    .LXXVI {
+        top: 75%;
+        left: 18%;
+    }
+
+    .LXXVII {
+        top: 72%;
+        left: 5%;
+    }
+
+    .LXXVIII {
+        top: 64%;
+        left: 73%;
+    }
+
+    .LXXIX {
+        top: 59%;
+        left: 83%;
+    }
+
+    .LXXX {
+        top: 45%;
+        left: 86%;
+    }
+
+    .LXXXI {
+        top: 56%;
+        left: 91%;
+    }
+
+    .LXXXII {
+        top: 69%;
+        left: 90%;
+    }
+
+    .LXXXIII {
+        top: 58%;
+        left: 15%;
+    }
+
+    .LXXXIV {
+        top: 89%;
+        left: 5%;
+    }
+
+    .LXXXV {
+        top: 81%;
+        left: 8%;
+    }
+
+    .LXXXVI {
+        top: 68%;
+        left: 25%;
+    }
+
+    .LXXXVII {
+        top: 24%;
+        left: 3%;
+    }
+
+    .LXXXVIII {
+        top: 37%;
+        left: 3%;
+    }
+
+    .LXXXIX {
+        top: 46%;
+        left: 18%;
+    }
+
+    .XC {
+        top: 26%;
+        left: 47%;
+    }
+
+    .XCI {
+        top: 16%;
+        left: 40%;
+    }
+
+    .XCII {
+        top: 25%;
+        left: 29%;
+    }
+
+    .XCIII {
+        top: 33%;
+        left: 12%;
+    }
+
+    .XCIV {
+        top: 40%;
+        left: 22%;
+    }
+
+    .XCV {
+        top: 48%;
+        left: 10%;
+    }
+
+    .XCVI {
+        top: 29%;
+        left: 73%;
+    }
+
+    .isonoe {
+        top: 51%;
+        left: 68%;
+    }
+
+
+    /* =====================================================
+       TAMAÑO DE LAS LUNAS
+       ===================================================== */
+
+    .universo > div[class]:not(.titulo):not(.planeta):not(.tarjeta):not([class$="-container"]) {
+        transform:
+            translate(-50%, -50%)
+            scale(.72);
+    }
+
+
+    /* Al tocar una luna */
+    .universo > div[class]:not(.titulo):not(.planeta):not(.tarjeta):not([class$="-container"]):active {
+        transform:
+            translate(-50%, -50%)
+            scale(1.25);
+
+        z-index: 100;
+
+        box-shadow:
+            0 0 15px white,
+            0 0 35px rgba(255,255,255,.95);
+    }
+
+
+    /* =====================================================
+       TARJETA
+       ===================================================== */
+    @media (max-width: 768px) {
+
+    .tarjeta {
+        position: absolute !important;
+
+        left: 50% !important;
+        right: auto !important;
+
+        /* Mantener el cuadro GRANDE */
+        width: 92% !important;
+        height: 300px !important;
+
+        /* Bajarlo */
+        top: auto !important;
+        bottom: -300px !important;
+
+        transform: translateX(-50%) !important;
+
+        padding: 15px 18px !important;
+
+        border-radius: 17px !important;
+
+        overflow: hidden;
+    }
+
+    }
+    .tarjeta {
+        top: auto;
+        right: auto;
+        bottom: 3%;
+        left: 50%;
+
+        transform: translateX(-50%);
+
+        width: 92%;
+        padding: 15px 18px;
+
+        border-radius: 16px;
+    }
+
+    .tarjeta h3 {
+        margin-bottom: 5px;
+        font-size: 21px;
+    }
+
+    .tarjeta p {
+        font-size: 30px;
+        line-height: 1.4;
+    }
+}
+/* =========================================================
+   CELULAR PEQUEÑO
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+    .universo {
+        min-height: 600px;
+    }
+
+    .planeta {
+        width: 50vw;
+        height: 50vw;
+        min-width: 175px;
+        min-height: 175px;
+        top: 39%;
+    }
+
+    .universo > div[class]:not(.titulo):not(.planeta):not(.tarjeta):not([class$="-container"]) {
+        transform: translate(-50%, -50%) scale(.62);
+    }
+
+    .universo > div[class]:not(.titulo):not(.planeta):not(.tarjeta):not([class$="-container"]):hover,
+    .universo > div[class]:not(.titulo):not(.planeta):not(.tarjeta):not([class$="-container"]):active {
+        transform: translate(-50%, -50%) scale(1.25);
+    }
+
+    .tarjeta {
+        bottom: 2%;
+        width: 94%;
+        padding: 12px 15px;
+    }
+
+    .tarjeta h3 {
+        font-size: 19px;
+    }
+
+    .tarjeta p {
+        font-size: 20px;
+        line-height: 1.35;
+    }
+
+    .universo > div[class]:not(.titulo):not(.planeta):not(.tarjeta):not([class$="-container"]) h2 {
+        font-size: 7px;
+        top: 16px;
+    }
+}
+
+
+/* En pantallas táctiles el efecto se activa al tocar */
+@media (hover: none) and (pointer: coarse) {
+    .universo > div[class]:not(.titulo):not(.planeta):not(.tarjeta):not([class$="-container"]):active {
+        box-shadow:
+            0 0 15px white,
+            0 0 32px rgba(255,255,255,.95);
+    }
+}
+/* ---------- CUADRO DE INFORMACIÓN ---------- */
+
+.tarjeta {
+    position: absolute !important;
+    color: white;
+    background: rgba(15,23,42,.88);
+    border: 1px solid rgba(129,140,248,.75);
+    border-radius: 20px;
+    box-shadow:
+        0 0 30px rgba(99,102,241,.3),
+        inset 0 0 25px rgba(255,255,255,.025);
+    backdrop-filter: blur(10px);
+    z-index: 200 !important;
+    box-sizing: border-box;
+}
+
+/* =========================================================
+   COMPUTADORA
+   Saturno a la izquierda + tarjeta a la derecha
+   ========================================================= */
+@media (min-width: 1101px) {
+
+    .planeta {
+        width: clamp(260px, 31vw, 400px);
+        height: clamp(260px, 31vw, 400px);
+        top: 50%;
+        left: 27%;
+        transform: translate(-50%, -50%);
+    }
+
+    .anillo {
+        z-index: 40;
+    }
+
+    .tarjeta {
+        top: 50% !important;
+        left: 60% !important;
+        right: 5% !important;
+        bottom: auto !important;
+        transform: translateY(-50%) !important;
+        width: 43% !important;
+        max-width: 620px;
+        height: 200px !important;
+        padding: 35px 40px !important;
+        overflow: auto;
+    }
+    .tarjeta h3 {
+        font-size: 30px;
+        margin-bottom: 5px;
+    }
+
+    .tarjeta p {
+        font-size: 20px;
+        line-height: 1.35;
+    }
+}
+
+/* =========================================================
+   TABLET
+   Saturno centrado + lunas alrededor + tarjeta abajo
+   ========================================================= */
+@media (min-width: 769px) and (max-width: 1100px) {
+
+    .universo {
+        min-height: 900px;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    .planeta {
+        width: 29vw;
+        height: 29vw;
+        min-width: 210px;
+        min-height: 210px;
+        max-width: 300px;
+        max-height: 300px;
+        top: 48%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .tarjeta {
+        top: auto !important;
+        left: 50% !important;
+        right: auto !important;
+        bottom: 2.5% !important;
+        transform: translateX(-50%) !important;
+        width: 88% !important;
+        max-width: 850px;
+        height: auto !important;
+        min-height: 190px;
+        max-height: 245px;
+        padding: 20px 25px !important;
+        overflow: auto;
+    }
+
+    .tarjeta h3 {
+        font-size: 24px;
+        margin-bottom: 7px;
+    }
+
+    .tarjeta p {
+        font-size: 25px;
+        line-height: 1.45;
+    }
+}
+
+/* =========================================================
+   CELULAR
+   Saturno centrado + lunas + tarjeta visible abajo
+   ========================================================= */
+@media (max-width: 768px) {
+
+    .universo {
+        min-height: 760px;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    .titulo {
+        top: 1.5%;
+        width: 94%;
+    }
+
+    .titulo h1 {
+        font-size: clamp(34px, 10vw, 48px);
+    }
+
+    .titulo p {
+        font-size: 13px;
+    }
+
+    .planeta {
+        width: 43vw;
+        height: 43vw;
+        min-width: 165px;
+        min-height: 165px;
+        max-width: 230px;
+        max-height: 230px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .anillo {
+        width: 175%;
+        height: 40%;
+        left: -37.5%;
+        top: 30%;
+        border-width: 5px;
+    }
+
+    .anillo::after {
+        border-width: 2px;
+    }
+
+    .tarjeta {
+        top: auto !important;
+        left: 50% !important;
+        right: auto !important;
+        bottom: 2% !important;
+        transform: translateX(-50%) !important;
+        width: 92% !important;
+        max-width: 620px;
+        height: auto !important;
+        min-height: 155px;
+        max-height: 205px;
+        padding: 14px 17px !important;
+        overflow: auto;
+    }
+
+    .tarjeta h3 {
+        font-size: 20px;
+        margin-bottom: 5px;
+    }
+
+    .tarjeta p {
+        font-size: 18px;
+        line-height: 1.35;
+    }
+
+    .universo > div[class]:not(.titulo):not(.planeta):not(.anillo):not(.tarjeta):not([class$="-container"]) h2 {
+        font-size: 7px;
+        top: 15px;
+    }
+}
+
+/* =========================================================
+   CELULAR PEQUEÑO
+   ========================================================= */
+@media (max-width: 480px) {
+
+    .universo {
+        min-height: 700px;
+    }
+
+    .planeta {
+        width: 45vw;
+        height: 45vw;
+        min-width: 155px;
+        min-height: 155px;
+        top: 36%;
+    }
+
+    .tarjeta {
+        width: 94% !important;
+        min-height: 145px;
+        max-height: 190px;
+        bottom: 1.5% !important;
+        padding: 12px 14px !important;
+    }
+
+    .tarjeta h3 {
+        font-size: 18px;
+    }
+
+    .tarjeta p {
+        font-size: 11.5px;
+    }
+}
+/* =========================================================
+   NAVEGACIÓN Y CUADRO INFORMATIVO RESPONSIVE
+   ========================================================= */
+.navegacion-planetas{
+    position:fixed;
+    top:18px;
+    left:22px;
+    display:flex;
+    gap:8px;
+    z-index:200;
+    flex-wrap:wrap;
+}
+.navegacion-planetas a{
+    color:#fff;
+    text-decoration:none;
+    font-size:13px;
+    padding:8px 12px;
+    border:1px solid rgba(255,255,255,.22);
+    border-radius:999px;
+    background:rgba(5,8,22,.62);
+    backdrop-filter:blur(8px);
+    transition:.2s ease;
+}
+.navegacion-planetas a:hover{
+    background:rgba(129,140,248,.22);
+    border-color:rgba(165,180,252,.65);
+}
+

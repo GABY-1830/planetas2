@@ -1,0 +1,812 @@
+/* =========================================================
+   EXPLORA EL UNIVERSO — MARTE
+   Versión responsive: computadora, tablet y celular
+   Basado en la estructura y posiciones del CSS original.
+   ========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    font-family: Arial, sans-serif;
+    background: #050816;
+    color: white;
+}
+
+.universo {
+    width: 100%;
+    min-height: 100vh;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 20% 30%, rgba(99,102,241,.12), transparent 25%),
+        radial-gradient(circle at 75% 70%, rgba(56,189,248,.08), transparent 25%),
+        #050816;
+}
+
+/* Estrellas decorativas hechas con CSS */
+.universo::before,
+.universo::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+        radial-gradient(circle, rgba(255,255,255,.8) 1px, transparent 1.5px),
+        radial-gradient(circle, rgba(255,255,255,.45) 1px, transparent 1.5px);
+    background-size: 95px 95px, 155px 155px;
+    background-position: 15px 20px, 50px 70px;
+    opacity: .32;
+}
+
+/* ---------- TÍTULO ---------- */
+
+.titulo {
+    position: absolute;
+    top: 4%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(90%, 900px);
+    text-align: center;
+    z-index: 30;
+}
+
+.titulo h1 {
+    font-size: clamp(30px, 4vw, 52px);
+    line-height: 1.1;
+    text-shadow: 0 0 18px rgba(129,140,248,.8);
+}
+
+.titulo p {
+    margin-top: 10px;
+    color: #a5b4fc;
+    font-size: clamp(14px, 1.5vw, 18px);
+}
+
+/* ---------- PLANETA ---------- */
+
+.planeta {
+    width: clamp(220px, 31vw, 400px);
+    height: clamp(220px, 31vw, 400px);
+    position: absolute;
+    top: 50%;
+    left: 27%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    z-index: 10;
+
+    background:
+        radial-gradient(circle at 30% 30%, #fb923c, #dc2626 55%, #7f1d1d);
+
+    box-shadow:
+        0 0 40px #792525,
+        0 0 100px #853636,
+        inset -30px -20px 40px #020617;
+
+    transition: transform .5s ease;
+    animation: girar 30s linear infinite;
+}
+
+.planeta:hover {
+    transform: translate(-50%, -50%) scale(1.06);
+}
+
+@keyframes girar {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+/* ---------- TODAS LAS LUNAS ---------- */
+
+[class$="-container"] {
+    display: none;
+}
+
+.universo > div[class]:not(.titulo):not(.planeta):not(.tarjeta):not([class$="-container"]) {
+    position: absolute;
+    border-radius: 50%;
+    background: #e5e7eb;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 20px white;
+    animation: flotar 4s ease-in-out infinite;
+    z-index: 15;
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        filter .25s ease;
+}
+
+.universo > div[class]:not(.titulo):not(.planeta):not(.tarjeta):not([class$="-container"]):hover {
+    transform: translate(-50%, -50%) scale(1.8);
+    box-shadow:
+        0 0 15px white,
+        0 0 35px rgba(255,255,255,.95);
+    filter: brightness(1.15);
+    z-index: 100;
+    cursor: pointer;
+}
+
+.universo > div[class]:not(.titulo):not(.planeta):not(.tarjeta):not([class$="-container"]) h2 {
+    position: absolute;
+    top: 22px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: max-content;
+    max-width: 150px;
+    text-align: center;
+    color: white;
+    font-size: 9px;
+    line-height: 1.1;
+    font-weight: bold;
+    text-shadow: 0 1px 5px #000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .2s ease;
+}
+
+.universo > div[class]:not(.titulo):not(.planeta):not(.tarjeta):not([class$="-container"]):hover h2 {
+    opacity: 1;
+}
+
+@keyframes flotar {
+    0%, 100% {
+        margin-top: 0;
+    }
+    50% {
+        margin-top: -5px;
+    }
+}
+
+/* ---------- POSICIONES ORIGINALES DE LAS LUNAS ---------- */
+
+.fobos {
+    width: 70px;
+    height: 70px;
+    top: 25%;
+    left: 15%;
+    
+}
+.fobos h2{
+    margin-top: 60px;
+}
+.deimos {
+    width: 70px;
+    height: 70px;
+    top: 45%;
+    left: 9%;
+    
+}
+.deimos h2{
+    margin-top: 60px;
+}
+/* ---------- CUADRO DE INFORMACIÓN ---------- */
+/* =========================================================
+   PC - CUADRO A LA DERECHA DEL PLANETA
+   ========================================================= */
+
+@media (min-width: 1101px) {
+
+    .tarjeta { 
+        position: absolute; 
+        top: 50%;
+        left: 52%; 
+        right: 5%; 
+        transform: translateY(-50%); 
+
+        /* ANCHO */
+        width: 50%;
+        max-width: 900px;
+
+        /* ALTO */
+        height: 600px;
+
+        padding: 35px 40px; 
+
+        color: white; 
+
+        background: rgba(15, 23, 42, .88); 
+
+        border: 1px solid rgba(129, 140, 248, .75); 
+        border-radius: 20px; 
+
+        box-shadow: 
+            0 0 30px rgba(99,102,241,.3),
+            inset 0 0 25px rgba(255,255,255,.025); 
+
+        backdrop-filter: blur(10px); 
+
+        z-index: 110; 
+    } 
+}
+/* =========================================================
+   TABLET
+   LUNAS ESPARCIDAS POR TODA LA PANTALLA
+   ========================================================= */
+
+@media (min-width: 769px) and (max-width: 1100px) {
+
+    .universo {
+        width: 100%;
+        height: 100vh;
+        min-height: 800px;
+        overflow: hidden;
+    }
+
+    /* ---------- TÍTULO ---------- */
+
+    .titulo {
+        top: 3%;
+        width: 90%;
+    }
+
+    .titulo h1 {
+        font-size: clamp(65px, 5vw, 50px);
+    }
+
+    .titulo p {
+        font-size: 17px;
+        margin-top: 8px;
+    }
+
+
+    /* ---------- Tierra ---------- */
+
+    .planeta {
+        width: 31vw;
+        height: 31vw;
+
+        min-width: 230px;
+        min-height: 230px;
+
+        max-width: 330px;
+        max-height: 330px;
+
+        top: 50%;
+        left: 50%;
+    }
+
+
+    /* =====================================================
+       LUNAS GRANDES
+       ===================================================== */
+
+    .fobos {
+        top: 30%;
+        left: 30%;
+    }
+    .deimos {
+        top: 43%;
+        left: 20%;
+    }
+}
+ /* =====================================================
+       TAMAÑO DE LAS LUNAS
+       ===================================================== */
+
+    .universo > div[class]:not(.titulo):not(.planeta):not(.tarjeta):not([class$="-container"]) {
+        transform:
+            translate(-50%, -50%)
+            scale(.85);
+    }
+
+
+    /* =====================================================
+       TARJETA INFERIOR
+       ===================================================== */
+    @media (min-width: 769px) and (max-width: 1100px) {
+
+    .tarjeta {
+        position: absolute !important;
+
+        left: 50% !important;
+        right: auto !important;
+
+        /*
+         * Mantenemos el cuadro GRANDE
+         */
+        width: 88% !important;
+        height: 400px !important;
+
+        /*
+         * Lo bajamos desde la parte superior
+         */
+        top: auto !important;
+        bottom: -170px !important;
+
+        transform: translateX(-50%) !important;
+
+        padding: 18px 22px !important;
+
+        border-radius: 18px !important;
+    }
+}
+    .tarjeta {
+    bottom: -45px;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+
+    width: 88%;
+    padding: 18px 22px;
+    border-radius: 18px;
+    }
+    .tarjeta h3 {
+        font-size: 24px;
+        margin-bottom: 6px;
+    }
+
+    .tarjeta p {
+        font-size: 15px;
+    }
+
+@media (max-width: 768px) {
+
+    .universo {
+        width: 100%;
+        height: 100vh;
+        min-height: 650px;
+        overflow: hidden;
+    }
+
+    /* ---------- TÍTULO ---------- */
+
+    .titulo {
+        top: 3%;
+        width: 94%;
+    }
+
+    .titulo h1 {
+        font-size: clamp(55px, 8vw, 36px);
+    }
+
+    .titulo p {
+        font-size: 15px;
+        margin-top: 6px;
+    }
+
+
+    /* ---------- PLANETA ---------- */
+
+    .planeta {
+        width: 58vw;
+        height: 58vw;
+
+        min-width: 190px;
+        min-height: 190px;
+
+        max-width: 250px;
+        max-height: 250px;
+
+        top: 50%;
+        left: 50%;
+    }
+
+
+    /* =====================================================
+       TODAS LAS LUNAS
+       ===================================================== */
+
+    .universo > div[class]:not(.titulo):not(.planeta):not(.tarjeta):not([class$="-container"]) {
+
+        transform: translate(-50%, -50%) scale(.70);
+
+        z-index: 15;
+
+        /* IMPORTANTE:
+           No las agrupamos alrededor del planeta */
+    }
+
+
+    /* =====================================================
+       LUNAS GRANDES
+       ===================================================== */
+
+    .fobos {
+        top: 33%;
+        left: 20%;
+
+    }
+    .deimos {
+        top: 45%;
+        left: 8%;
+    }
+}
+   /* =====================================================
+       TAMAÑO DE LAS LUNAS
+       ===================================================== */
+
+    .universo > div[class]:not(.titulo):not(.planeta):not(.tarjeta):not([class$="-container"]) {
+        transform:
+            translate(-50%, -50%)
+            scale(.72);
+    }
+
+
+    /* Al tocar una luna */
+    .universo > div[class]:not(.titulo):not(.planeta):not(.tarjeta):not([class$="-container"]):active {
+        transform:
+            translate(-50%, -50%)
+            scale(1.25);
+
+        z-index: 100;
+
+        box-shadow:
+            0 0 15px white,
+            0 0 35px rgba(255,255,255,.95);
+    }
+
+
+    /* =====================================================
+       TARJETA
+       ===================================================== */
+    @media (max-width: 768px) {
+
+    .tarjeta {
+        position: absolute !important;
+
+        left: 50% !important;
+        right: auto !important;
+
+        /* Mantener el cuadro GRANDE */
+        width: 92% !important;
+        height: 300px !important;
+
+        /* Bajarlo */
+        top: auto !important;
+        bottom: -300px !important;
+
+        transform: translateX(-50%) !important;
+
+        padding: 15px 18px !important;
+
+        border-radius: 17px !important;
+
+        overflow: hidden;
+    }
+
+    }
+    .tarjeta {
+        top: auto;
+        right: auto;
+        bottom: 3%;
+        left: 50%;
+
+        transform: translateX(-50%);
+
+        width: 92%;
+        padding: 15px 18px;
+
+        border-radius: 16px;
+    }
+
+    .tarjeta h3 {
+        margin-bottom: 5px;
+        font-size: 21px;
+    }
+
+    .tarjeta p {
+        font-size: 13px;
+        line-height: 1.4;
+    }
+
+/* =========================================================
+   CELULAR PEQUEÑO
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+    .universo {
+        min-height: 600px;
+    }
+
+    .planeta {
+        width: 40vw;
+        height: 40vw;
+        min-width: 175px;
+        min-height: 175px;
+        top: 39%;
+    }
+
+    .universo > div[class]:not(.titulo):not(.planeta):not(.tarjeta):not([class$="-container"]) {
+        transform: translate(-50%, -50%) scale(.62);
+    }
+
+    .universo > div[class]:not(.titulo):not(.planeta):not(.tarjeta):not([class$="-container"]):hover,
+    .universo > div[class]:not(.titulo):not(.planeta):not(.tarjeta):not([class$="-container"]):active {
+        transform: translate(-50%, -50%) scale(1.25);
+    }
+
+    .tarjeta {
+        bottom: 2%;
+        width: 94%;
+        padding: 12px 15px;
+    }
+
+    .tarjeta h3 {
+        font-size: 19px;
+    }
+
+    .tarjeta p {
+        font-size: 12px;
+        line-height: 1.35;
+    }
+
+    .universo > div[class]:not(.titulo):not(.planeta):not(.tarjeta):not([class$="-container"]) h2 {
+        font-size: 7px;
+        top: 16px;
+    }
+}
+
+
+/* En pantallas táctiles el efecto se activa al tocar */
+@media (hover: none) and (pointer: coarse) {
+    .universo > div[class]:not(.titulo):not(.planeta):not(.tarjeta):not([class$="-container"]):active {
+        box-shadow:
+            0 0 15px white,
+            0 0 32px rgba(255,255,255,.95);
+    }
+}
+/* ---------- CUADRO DE INFORMACIÓN ---------- */
+
+.tarjeta {
+    position: absolute !important;
+    color: white;
+    background: rgba(15,23,42,.88);
+    border: 1px solid rgba(129,140,248,.75);
+    border-radius: 20px;
+    box-shadow:
+        0 0 30px rgba(99,102,241,.3),
+        inset 0 0 25px rgba(255,255,255,.025);
+    backdrop-filter: blur(10px);
+    z-index: 200 !important;
+    box-sizing: border-box;
+}
+
+/* =========================================================
+   COMPUTADORA
+   Saturno a la izquierda + tarjeta a la derecha
+   ========================================================= */
+@media (min-width: 1101px) {
+
+    .planeta {
+        width: clamp(260px, 31vw, 400px);
+        height: clamp(260px, 31vw, 400px);
+        top: 50%;
+        left: 27%;
+        transform: translate(-50%, -50%);
+    }
+
+    .anillo {
+        z-index: 40;
+    }
+
+    .tarjeta {
+        top: 50% !important;
+        left: 60% !important;
+        right: 5% !important;
+        bottom: auto !important;
+        transform: translateY(-50%) !important;
+        width: 43% !important;
+        max-width: 620px;
+        height: 200px !important;
+        padding: 35px 40px !important;
+        overflow: auto;
+    }
+    .tarjeta h3 {
+        font-size: 30px;
+        margin-bottom: 5px;
+    }
+
+    .tarjeta p {
+        font-size: 20px;
+        line-height: 1.35;
+    }
+}
+
+/* =========================================================
+   TABLET
+   Saturno centrado + lunas alrededor + tarjeta abajo
+   ========================================================= */
+@media (min-width: 769px) and (max-width: 1100px) {
+
+    .universo {
+        min-height: 900px;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    .planeta {
+        width: 29vw;
+        height: 29vw;
+        min-width: 210px;
+        min-height: 210px;
+        max-width: 300px;
+        max-height: 300px;
+        top: 48%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .tarjeta {
+        top: auto !important;
+        left: 50% !important;
+        right: auto !important;
+        bottom: 2.5% !important;
+        transform: translateX(-50%) !important;
+        width: 88% !important;
+        max-width: 850px;
+        height: auto !important;
+        min-height: 190px;
+        max-height: 245px;
+        padding: 20px 25px !important;
+        overflow: auto;
+    }
+
+    .tarjeta h3 {
+        font-size: 24px;
+        margin-bottom: 7px;
+    }
+
+    .tarjeta p {
+        font-size: 25px;
+        line-height: 1.45;
+    }
+}
+
+/* =========================================================
+   CELULAR
+   Saturno centrado + lunas + tarjeta visible abajo
+   ========================================================= */
+@media (max-width: 768px) {
+
+    .universo {
+        min-height: 760px;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    .titulo {
+        top: 1.5%;
+        width: 94%;
+    }
+
+    .titulo h1 {
+        font-size: clamp(34px, 10vw, 48px);
+    }
+
+    .titulo p {
+        font-size: 13px;
+    }
+
+    .planeta {
+        width: 43vw;
+        height: 43vw;
+        min-width: 165px;
+        min-height: 165px;
+        max-width: 230px;
+        max-height: 230px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .anillo {
+        width: 175%;
+        height: 40%;
+        left: -37.5%;
+        top: 30%;
+        border-width: 5px;
+    }
+
+    .anillo::after {
+        border-width: 2px;
+    }
+
+    .tarjeta {
+        top: auto !important;
+        left: 50% !important;
+        right: auto !important;
+        bottom: 2% !important;
+        transform: translateX(-50%) !important;
+        width: 92% !important;
+        max-width: 620px;
+        height: auto !important;
+        min-height: 155px;
+        max-height: 205px;
+        padding: 14px 17px !important;
+        overflow: auto;
+    }
+
+    .tarjeta h3 {
+        font-size: 20px;
+        margin-bottom: 5px;
+    }
+
+    .tarjeta p {
+        font-size: 18px;
+        line-height: 1.35;
+    }
+
+    .universo > div[class]:not(.titulo):not(.planeta):not(.anillo):not(.tarjeta):not([class$="-container"]) h2 {
+        font-size: 7px;
+        top: 15px;
+    }
+}
+
+/* =========================================================
+   CELULAR PEQUEÑO
+   ========================================================= */
+@media (max-width: 480px) {
+
+    .universo {
+        min-height: 700px;
+    }
+
+    .planeta {
+        width: 45vw;
+        height: 45vw;
+        min-width: 155px;
+        min-height: 155px;
+        top: 36%;
+    }
+
+    .tarjeta {
+        width: 94% !important;
+        min-height: 145px;
+        max-height: 190px;
+        bottom: 1.5% !important;
+        padding: 12px 14px !important;
+    }
+
+    .tarjeta h3 {
+        font-size: 18px;
+    }
+
+    .tarjeta p {
+        font-size: 11.5px;
+    }
+}
+/* =========================================================
+   NAVEGACIÓN Y CUADRO INFORMATIVO RESPONSIVE
+   ========================================================= */
+.navegacion-planetas{
+    position:fixed;
+    top:18px;
+    left:22px;
+    display:flex;
+    gap:8px;
+    z-index:200;
+    flex-wrap:wrap;
+}
+.navegacion-planetas a{
+    color:#fff;
+    text-decoration:none;
+    font-size:13px;
+    padding:8px 12px;
+    border:1px solid rgba(255,255,255,.22);
+    border-radius:999px;
+    background:rgba(5,8,22,.62);
+    backdrop-filter:blur(8px);
+    transition:.2s ease;
+}
+.navegacion-planetas a:hover{
+    background:rgba(129,140,248,.22);
+    border-color:rgba(165,180,252,.65);
+}
+
+
